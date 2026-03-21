@@ -1,0 +1,31 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Registration {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  institution   String
+  qualification String
+  experience    String
+  interest      String
+  createdAt     DateTime @default(now())
+}
+
+model Feedback {
+  id            String   @id @default(cuid())
+  participantId String?
+  day           String
+  overall       Int
+  pace          Int
+  content       Int
+  faculty       Int
+  comments      String?
+  createdAt     DateTime @default(now())
+}

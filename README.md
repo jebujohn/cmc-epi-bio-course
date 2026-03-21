@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EpiBio CMC 2026
 
-## Getting Started
+A modern, responsive Next.js application for the Two-Week Course on Epidemiology and Biostatistics at Christian Medical College (CMC), Vellore.
 
-First, run the development server:
+## 🎯 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Modern UI**: Built with Tailwind CSS and Framer Motion for a dynamic, glassmorphic aesthetic.
+- **Fully Responsive**: Optimized for Desktop, Tablet, and Mobile.
+- **Pages**:
+  - Landing Page: Course overview, highlights, and testimonials.
+  - Faculty Profile: Dynamic grid with modal details for expert faculty.
+  - Agenda: Interactive, expandable daily schedule.
+  - Registration Form: Robust validation and responsive UI.
+  - Daily Feedback System: Interactive Likert-scale feedback form for participants.
+  - Payment Mockup: Simulated Razorpay payment flow.
+- **Modular Architecture**: Reusable components (`Navbar`, `Footer`) utilizing Next.js 15 App Router.
+
+## ⚙️ Tech Stack
+
+- **Frontend Framework**: Next.js (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Dependencies Management**: npm
+
+## 📂 Folder Structure
+
+```text
+cmc-epi-bio-course/
+├── src/
+│   ├── app/                    # Next.js App Router (Pages & Layout)
+│   │   ├── globals.css         # Global Styles & Tailwind Configuration
+│   │   ├── layout.tsx          # Root Layout (Navbar, Footer, Font)
+│   │   ├── page.tsx            # Landing Page
+│   │   ├── agenda/             # Agenda Page
+│   │   ├── faculty/            # Faculty Profile Pages
+│   │   ├── feedback/           # Daily Feedback System
+│   │   ├── payment/            # Payment Checkout Mockup
+│   │   └── registration/       # Registration Form Pages
+│   ├── components/             # Reusable React Components
+│   │   ├── Navbar.tsx
+│   │   └── Footer.tsx
+├── package.json
+└── tailwind.config.ts          # Exists internally as part of Next.js Tailwind configuration
 ```
 
+## 🚀 Setup & Installation
+
+Follow these steps to run the application locally:
+
+### 1. Pre-requisites
+Make sure you have [Node.js](https://nodejs.org/) (v18 or newer) installed.
+
+### 2. Install Dependencies
+Run the following command in the project root:
+```bash
+npm install
+```
+
+### 3. Start Development Server
+```bash
+npm run dev
+```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Build for Production
+To create an optimized production build:
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Additional Integrations Required (For Backend)
 
-## Learn More
+Currently, the forms and payment systems are simulated within the UI to demonstrate user flow. To make this fully functional in a production environment:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Database Integration**: Connect `src/app/registration/page.tsx` and `src/app/feedback/page.tsx` to a backend (like MongoDB or Firebase Firestore).
+2. **Payments**: Integrate Razorpay or Stripe API keys into backend server actions to generate real transaction tokens for `src/app/payment/page.tsx`.
+3. **Email Handling**: Use tools like SendGrid or AWS SES to send registration confirmation emails.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Design Guidance Followed
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Theme**: Institutional CMC branding with clean white, professional blue (`#0e4b85`), and muted green (`#166534`).
+- **Typography**: Inter (Sans-serif) for clean readability.
+- **UX**: Emphasized clarity, fast-loading interactions without clutter.

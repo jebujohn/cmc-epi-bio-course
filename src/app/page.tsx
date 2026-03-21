@@ -1,65 +1,298 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight, Calendar, MapPin, Users, Award, PlayCircle, NotebookText, Star, GraduationCap } from "lucide-react";
 
 export default function Home() {
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-slate-50 border-b border-slate-200">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 z-0" />
+        <div className="absolute opacity-10 blur-3xl rounded-full bg-primary/20 w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-0"></div>
+        <div className="absolute opacity-20 blur-3xl rounded-full bg-secondary/20 w-96 h-96 bottom-0 right-0 translate-x-1/2 translate-y-1/2 z-0"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 relative z-10 flex flex-col md:flex-row items-center">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={staggerContainer}
+            className="md:w-3/5 md:pr-12 text-center md:text-left"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-primary font-medium text-sm mb-6 border border-blue-200 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              Registrations Closed for 2025 Cohort
+            </motion.div>
+
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+              <span className="block text-2xl md:text-3xl text-primary font-bold mb-2">46th Epidemiology Refresher Course (ERC)</span>
+              Principles and Practice of <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-green-500">Epidemiology</span>
+            </motion.h1>
+
+            <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
+              Designed for medical college faculty, postgraduate students, health managers, and researchers at Christian Medical College, Vellore.
+            </motion.p>
+
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+              <Link href="/registration" className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-white font-semibold flex items-center justify-center gap-2 hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                Register Now
+                <ArrowRight size={20} />
+              </Link>
+              <Link href="/agenda" className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-slate-700 font-semibold flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all shadow-sm group">
+                View Agenda
+                <NotebookText size={20} className="text-slate-400 group-hover:text-primary transition-colors" />
+              </Link>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6 mt-12 pt-8 border-t border-slate-200">
+              <div className="flex items-center gap-3">
+                <div className="bg-slate-100 p-2.5 rounded-lg text-primary">
+                  <Calendar size={22} />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Dates</p>
+                  <p className="text-sm font-semibold text-slate-900">July 6 - July 18, 2026</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="bg-slate-100 p-2.5 rounded-lg text-secondary">
+                  <MapPin size={22} />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Location</p>
+                  <p className="text-sm font-semibold text-slate-900">CHTC Bagayam, CMC Vellore</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="md:w-2/5 mt-16 md:mt-0"
           >
-            Documentation
-          </a>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 aspect-[4/5] md:aspect-auto md:h-[500px]">
+              {/* Using a placeholder gradient pattern since we don't have real images */}
+              <div className="absolute inset-0 bg-gradient-to-b from-slate-100 to-slate-200 flex items-center justify-center">
+                <div className="grid grid-cols-2 gap-2 p-4 w-full h-full">
+                  <div className="bg-white/50 backdrop-blur-md rounded-xl border border-white max-h-48 shadow-sm"></div>
+                  <div className="bg-white/40 backdrop-blur-md rounded-xl border border-white max-h-32 mt-auto shadow-sm"></div>
+                  <div className="bg-white/60 backdrop-blur-md rounded-xl border border-white mt-auto max-h-40 col-span-2 shadow-sm flex items-center justify-center">
+                    <GraduationCap className="text-slate-300 w-16 h-16" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md rounded-xl p-4 border border-white shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="bg-green-100 text-green-700 p-2 rounded-full">
+                    <Users size={20} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-900">Join 500+ Alumni</p>
+                    <p className="text-xs text-slate-500">From 12+ Institutions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </main>
+      </section>
+
+      {/* Highlights Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Why Attend This Course?</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+              Designed specifically for medical professionals and researchers aiming to strengthen their analytical capabilities.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-lg transition-shadow group">
+              <div className="bg-blue-100 text-primary w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <PlayCircle size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Hands-On Sessions</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Move beyond theory. Our curriculum heavily emphasizes practical, software-based learning using R and SPSS on real datasets.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-lg transition-shadow group">
+              <div className="bg-green-100 text-secondary w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Users size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Expert Faculty</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Learn directly from renowned professors and practicing epidemiologists from CMC and international partner universities.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-lg transition-shadow group">
+              <div className="bg-orange-100 text-orange-600 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Award size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Certification</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Receive an official certificate from CMC Vellore upon successfully completing the two-week rigorous curriculum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Venue & Accommodation Section */}
+      <section className="py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Venue & Accommodation</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+              Experience learning at the historic Community Health Training Centre (CHTC) in the Christian Medical College campus at Bagayam.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h3 className="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                  <MapPin className="text-primary" />
+                  Training Center
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  The course is held at CHTC, Bagayam. Surrounded by lush greenery, the center provides a tranquil and focused environment for intensive statistical learning.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h3 className="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                  <Users className="text-secondary" />
+                  Participant Accommodation
+                </h3>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  Shared accommodation is available at the CHTC Guest House for the duration of the course to facilitate networking among participants.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                    <p className="text-sm text-slate-500 font-medium mb-1">Non-AC Room</p>
+                    <p className="font-bold text-slate-900">₹550 <span className="text-sm font-normal text-slate-500">/ night</span></p>
+                  </div>
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                    <p className="text-sm text-slate-500 font-medium mb-1">AC Room</p>
+                    <p className="font-bold text-slate-900">₹650 <span className="text-sm font-normal text-slate-500">/ night</span></p>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-400 mt-4 text-center">* Food is available at the mess for an additional cost.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6">
+              <div className="rounded-2xl overflow-hidden shadow-lg h-64 relative group">
+                <img
+                  src="https://imgproxy.gamma.app/resize/quality:80/resizing_type:fit/width:1000/height:1000/https://cdn.gamma.app/4ak4y6ycqi9c36v/37f434776ddf49d2846bcf3efb0b9ecf/original/chtc.jpg"
+                  alt="CHTC Building"
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                  <p className="text-white font-medium p-6">CHTC Campus, Bagayam</p>
+                </div>
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg h-64 relative group">
+                <img
+                  src="https://imgproxy.gamma.app/resize/quality:80/resizing_type:fit/width:1000/height:1000/https://cdn.gamma.app/4ak4y6ycqi9c36v/4ccf376f86db41328245eb7d3095278c/original/20250801_101012-1-1.jpg"
+                  alt="CHTC Accommodation"
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                  <p className="text-white font-medium p-6">Guest House Accommodation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-dark/20 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-secondary/20 blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">What Our Participants Say</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+              Hear from recent graduates of the EpiBio program.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl">
+              <div className="flex text-yellow-500 mb-4">
+                <Star size={18} fill="currentColor" />
+                <Star size={18} fill="currentColor" />
+                <Star size={18} fill="currentColor" />
+                <Star size={18} fill="currentColor" />
+                <Star size={18} fill="currentColor" />
+              </div>
+              <p className="text-slate-300 italic mb-6 leading-relaxed">
+                "The way they simplified complex biostatistical models and made them applicable to clinical scenarios was phenomenal. I am now confident in designing my own trials."
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center font-bold text-lg text-slate-300">
+                  DR
+                </div>
+                <div>
+                  <h4 className="font-semibold">Dr. Rahul Sharma</h4>
+                  <p className="text-sm text-slate-400">Senior Resident, AIIMS Delhi</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl">
+              <div className="flex text-yellow-500 mb-4">
+                <Star size={18} fill="currentColor" />
+                <Star size={18} fill="currentColor" />
+                <Star size={18} fill="currentColor" />
+                <Star size={18} fill="currentColor" />
+                <Star size={18} fill="currentColor" />
+              </div>
+              <p className="text-slate-300 italic mb-6 leading-relaxed">
+                "An incredibly well-structured course. The hands-on sessions in R were exactly what I needed to elevate my public health research publications."
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center font-bold text-lg text-slate-300">
+                  AJ
+                </div>
+                <div>
+                  <h4 className="font-semibold">Anita Joseph</h4>
+                  <p className="text-sm text-slate-400">Public Health Researcher, WHO</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
