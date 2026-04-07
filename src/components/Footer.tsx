@@ -52,7 +52,7 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-secondary-light" />
-                                <a href="mailto:chadat@cmcvellore.ac.in" className="hover:text-white transition-colors">chadat@cmcvellore.ac.in</a>
+                                <a href="mailto:chad@cmcvellore.ac.in" className="hover:text-white transition-colors">chad@cmcvellore.ac.in</a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Phone className="w-5 h-5 text-secondary-light" />
