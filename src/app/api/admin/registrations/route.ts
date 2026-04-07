@@ -3,8 +3,19 @@ import prisma from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
+const checkAuth = (req: Request) => {
+    const password = req.headers.get("x-admin-password");
+    if (!password || password !== process.env.ADMIN_PASSWORD) {
+        return false;
+    }
+    return true;
+};
+
 // GET /api/admin/registrations - List all applications
-export async function GET() {
+export async function GET(req: Request) {
+    if (!checkAuth(req)) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     try {
         const registrations = await prisma.registration.findMany({
             orderBy: { createdAt: 'desc' }
@@ -18,6 +29,9 @@ export async function GET() {
 
 // PATCH /api/admin/registrations - Update application status
 export async function PATCH(req: Request) {
+    if (!checkAuth(req)) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     try {
         const { id, status } = await req.json();
 

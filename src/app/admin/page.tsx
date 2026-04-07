@@ -21,14 +21,24 @@ export default function AdminPortal() {
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedRegistration, setSelectedRegistration] = useState<Registration | null>(null);
+    const [passcode, setPasscode] = useState("");
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [loginError, setLoginError] = useState("");
 
-    const fetchRegistrations = async () => {
+    const fetchRegistrations = async (currentPasscode: string) => {
         setLoading(true);
         try {
-            const res = await fetch("/api/admin/registrations");
+            const res = await fetch("/api/admin/registrations", {
+                headers: { "x-admin-password": currentPasscode }
+            });
             if (res.ok) {
                 const data = await res.json();
                 setRegistrations(data);
+                setIsAuthorized(true);
+                setLoginError("");
+            } else if (res.status === 401) {
+                setIsAuthorized(false);
+                setLoginError("Invalid passcode. Please try again.");
             }
         } catch (error) {
             console.error("Fetch failed", error);
@@ -37,22 +47,28 @@ export default function AdminPortal() {
         }
     };
 
-    useEffect(() => {
-        fetchRegistrations();
-    }, []);
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        fetchRegistrations(passcode);
+    };
 
     const updateStatus = async (id: string, status: string) => {
         try {
             const res = await fetch("/api/admin/registrations", {
                 method: "PATCH",
                 body: JSON.stringify({ id, status }),
-                headers: { "Content-Type": "application/json" }
+                headers: { 
+                    "Content-Type": "application/json",
+                    "x-admin-password": passcode
+                }
             });
             if (res.ok) {
                 setRegistrations(prev => prev.map(r => r.id === id ? { ...r, status } : r));
                 if (selectedRegistration?.id === id) {
                     setSelectedRegistration(prev => prev ? { ...prev, status } : null);
                 }
+            } else if (res.status === 401) {
+                setIsAuthorized(false);
             }
         } catch (error) {
             console.error("Update failed", error);
@@ -80,6 +96,46 @@ export default function AdminPortal() {
             default: return <Clock size={16} />;
         }
     };
+
+    if (!isAuthorized) {
+        return (
+            <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-10 text-center"
+                >
+                    <div className="w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-8">
+                        <User size={40} />
+                    </div>
+                    <h1 className="text-2xl font-extrabold text-slate-900 mb-2">Admin Access</h1>
+                    <p className="text-slate-500 mb-8 font-medium">Please enter the administrative passcode to manage applications.</p>
+                    
+                    <form onSubmit={handleLogin} className="space-y-4">
+                        <div className="text-left">
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block pl-1">Passcode</label>
+                            <input
+                                type="password"
+                                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                placeholder="••••••••"
+                                value={passcode}
+                                onChange={(e) => setPasscode(e.target.value)}
+                                autoFocus
+                            />
+                            {loginError && <p className="text-red-500 text-xs mt-2 font-medium pl-1">{loginError}</p>}
+                        </div>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+                        >
+                            {loading ? "Verifying..." : "Access Portal"}
+                        </button>
+                    </form>
+                </motion.div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-slate-50 py-12">
@@ -110,8 +166,8 @@ export default function AdminPortal() {
                     
                     {/* Sidebar: Application List */}
                     <div className="lg:col-span-1 space-y-4 max-h-[700px] overflow-y-auto pr-2 custom-scrollbar">
-                        {loading ? (
-                            <div className="p-8 text-center text-slate-400 font-medium">Loading applications...</div>
+                        {loading && filtered.length === 0 ? (
+                            <div className="p-8 text-center text-slate-400 font-medium font-medium">Loading applications...</div>
                         ) : filtered.length === 0 ? (
                             <div className="p-8 text-center text-slate-400 font-medium bg-white rounded-xl border border-dashed border-slate-200">
                                 No applications found
