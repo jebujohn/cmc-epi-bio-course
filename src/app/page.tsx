@@ -35,13 +35,15 @@ export default function Home() {
             variants={staggerContainer}
             className="max-w-4xl mx-auto text-center"
           >
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-primary font-medium text-sm mb-6 border border-blue-200 shadow-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-              </span>
-              Registrations Closed for 2025 Cohort
-            </motion.div>
+            <Link href="/registration">
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 font-medium text-sm mb-6 border border-green-200 shadow-sm hover:bg-green-200 transition-colors">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Registrations for 2026 cohort now open
+              </motion.div>
+            </Link>
 
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
               <span className="block text-2xl md:text-3xl text-primary font-bold mb-2">46th Epidemiology Refresher Course (ERC)</span>
