@@ -14,7 +14,8 @@ const facultyData = [
         expertise: ["Morbidity and Mortality Measurement"],
         bio: "An expert in quantifying disease frequency, Anu Oommen teaches the essential principles of measurement errors, reliability, and validity within epidemiological data.",
         image: "/faculty/anu.jpg",
-        imagePosition: "center 15%",
+        imagePosition: "center center",
+        fit: "contain",
         profileUrl: "https://www.cmch-vellore.edu/anu-mary-oommen/",
         scholarUrl: "https://scholar.google.com/citations?user=opEL128AAAAJ",
     },
@@ -27,6 +28,7 @@ const facultyData = [
         bio: "Focuses on causality evaluation and complex epidemiological frameworks, ensuring students can design rigorous cohort and cross-sectional studies.",
         image: "/faculty/divya.jpg",
         imagePosition: "center 10%",
+        fit: "cover",
         profileUrl: "https://www.cmch-vellore.edu/divya-elizabeth-muliyil/",
         scholarUrl: null,
     },
@@ -39,6 +41,7 @@ const facultyData = [
         bio: "Jacob John leads the foundational sessions on the epidemiological approach, giving students a robust understanding of disease dynamics and practical public health research methodology.",
         image: "/faculty/jacob_john.jpg",
         imagePosition: "center center",
+        fit: "contain",
         profileUrl: "https://www.cmch-vellore.edu/jacob-john/",
         scholarUrl: "https://scholar.google.com/citations?user=1YQc1_wAAAAJ",
     },
@@ -73,6 +76,7 @@ const facultyData = [
         bio: "Marconi bridges the gap between raw literature and robust conclusions through systematic review methodology and statistical computing.",
         image: "/faculty/marconi.jpg",
         imagePosition: "center 20%",
+        fit: "cover",
         profileUrl: "https://www.cmch-vellore.edu/sam-marconi/",
         scholarUrl: "https://scholar.google.com/citations?user=WY-PJXUAAAAJ",
     },
@@ -96,6 +100,7 @@ const facultyData = [
         bio: "Specialising in rigorous sampling methods, Venkata Raghava Mohan helps students deeply understand population statistics and proper methodological design.",
         image: "/faculty/venkata.jpg",
         imagePosition: "center 20%",
+        fit: "cover",
         profileUrl: "https://www.cmch-vellore.edu/venkata-raghava-m/",
         scholarUrl: null,
     },
@@ -152,7 +157,7 @@ export default function FacultyPage() {
                                         src={faculty.image}
                                         alt={faculty.name}
                                         fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                        className={`${faculty.fit === 'contain' ? 'object-contain p-8' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`}
                                         style={{ objectPosition: faculty.imagePosition ?? "center 20%" }}
                                     />
                                 ) : (
@@ -233,7 +238,7 @@ export default function FacultyPage() {
                                             src={selectedFaculty.image}
                                             alt={selectedFaculty.name}
                                             fill
-                                            className="object-cover"
+                                            className={`${selectedFaculty.fit === 'contain' ? 'object-contain p-8' : 'object-cover'}`}
                                             style={{ objectPosition: selectedFaculty.imagePosition ?? "center 20%" }}
                                         />
                                     ) : (
