@@ -16,11 +16,11 @@ const facultyData = [
     },
     {
         id: 2,
-        name: "Dr Anu Ooomem",
+        name: "Dr Anu Oommen",
         designation: "Professor",
         affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Morbidity and Mortality Measurement"],
-        bio: "An expert in quantifying disease frequency, Dr Anu Ooomem teaches the essential principles of measurement errors, reliability, and validity within epidemiological data.",
+        bio: "An expert in quantifying disease frequency, Dr Anu Oommen teaches the essential principles of measurement errors, reliability, and validity within epidemiological data.",
         image: "/faculty/anu.jpg"
     },
     {

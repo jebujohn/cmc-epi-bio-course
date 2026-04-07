@@ -18,7 +18,7 @@ export default function AgendaPage() {
             title: "Introduction to Epidemiology & Study Designs",
             sessions: [
                 { time: "09:00 - 10:30", topic: "Welcome & Overview of Epidemiology", faculty: "Dr. Jacob John" },
-                { time: "11:00 - 13:00", topic: "Measures of Disease Frequency", faculty: "Dr Anu Ooomem" },
+                { time: "11:00 - 13:00", topic: "Measures of Disease Frequency", faculty: "Dr Anu Oommen" },
                 { time: "14:00 - 16:00", topic: "Observational Study Designs (Cohort & Case-Control)", faculty: "Dr. JP Muliyil" },
             ]
         },
@@ -37,7 +37,7 @@ export default function AgendaPage() {
             date: "Wednesday, July 8",
             title: "Probability & Inferential Statistics",
             sessions: [
-                { time: "09:00 - 10:30", topic: "Normal Distribution & Confidence Intervals", faculty: "Dr Anu Ooomem" },
+                { time: "09:00 - 10:30", topic: "Normal Distribution & Confidence Intervals", faculty: "Dr Anu Oommen" },
                 { time: "11:00 - 13:00", topic: "Hypothesis Testing & p-values", faculty: "Dr. Divya Muliyil" },
                 { time: "14:00 - 16:00", topic: "Hands-on: Inferential Stats", faculty: "Dr. Jackwin Sam" },
             ]
@@ -67,7 +67,7 @@ export default function AgendaPage() {
             date: "Saturday, July 11",
             title: "Correlation & Regression",
             sessions: [
-                { time: "09:00 - 10:30", topic: "Pearson & Spearman Correlation", faculty: "Dr Anu Ooomem" },
+                { time: "09:00 - 10:30", topic: "Pearson & Spearman Correlation", faculty: "Dr Anu Oommen" },
                 { time: "11:00 - 13:00", topic: "Multiple Linear Regression", faculty: "Dr. Shalini Paul" },
                 { time: "14:00 - 16:00", topic: "Hands-on: Regression Output Interpretation", faculty: "Dr. Jackwin Sam" },
             ]
@@ -78,7 +78,7 @@ export default function AgendaPage() {
             title: "Advanced Epidemiological Methods",
             sessions: [
                 { time: "09:00 - 10:30", topic: "Systematic Reviews & Meta-Analysis", faculty: "Dr. Sam Marconi" },
-                { time: "11:00 - 13:00", topic: "Critical Appraisal of Literature", faculty: "Dr Anu Ooomem" },
+                { time: "11:00 - 13:00", topic: "Critical Appraisal of Literature", faculty: "Dr Anu Oommen" },
                 { time: "14:00 - 16:00", topic: "Hands-on: Review Methods", faculty: "Dr. Jackwin Sam" },
             ]
         },
@@ -118,7 +118,7 @@ export default function AgendaPage() {
             title: "Health Economics & Outcomes",
             sessions: [
                 { time: "09:00 - 10:30", topic: "Health Economics Overview", faculty: "Dr. Venkata Raghava Mohan" },
-                { time: "11:00 - 13:00", topic: "Cost-Effectiveness Analysis", faculty: "Dr Anu Ooomem" },
+                { time: "11:00 - 13:00", topic: "Cost-Effectiveness Analysis", faculty: "Dr Anu Oommen" },
                 { time: "14:00 - 16:00", topic: "Hands-on: Modeling", faculty: "Dr. Jackwin Sam" },
             ]
         },
@@ -129,7 +129,7 @@ export default function AgendaPage() {
             sessions: [
                 { time: "09:00 - 10:30", topic: "Course Assessment Exam", faculty: "Faculty Panel" },
                 { time: "11:00 - 13:00", topic: "Final Presentations", faculty: "Faculty Panel" },
-                { time: "14:00 - 16:00", topic: "Valedictory & Certificate Distribution", faculty: "Dr. Jacob John & Dr Anu Ooomem" },
+                { time: "14:00 - 16:00", topic: "Valedictory & Certificate Distribution", faculty: "Dr. Jacob John & Dr Anu Oommen" },
             ]
         }
     ];
