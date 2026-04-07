@@ -14,6 +14,7 @@ const facultyData = [
         expertise: ["Morbidity and Mortality Measurement"],
         bio: "An expert in quantifying disease frequency, Anu Oommen teaches the essential principles of measurement errors, reliability, and validity within epidemiological data.",
         image: "/faculty/anu.jpg",
+        imagePosition: "center 15%",
         profileUrl: "https://www.cmch-vellore.edu/anu-mary-oommen/",
         scholarUrl: "https://scholar.google.com/citations?user=opEL128AAAAJ",
     },
@@ -25,6 +26,7 @@ const facultyData = [
         expertise: ["Causal Analysis", "Study Designs"],
         bio: "Focuses on causality evaluation and complex epidemiological frameworks, ensuring students can design rigorous cohort and cross-sectional studies.",
         image: "/faculty/divya.jpg",
+        imagePosition: "center 10%",
         profileUrl: "https://www.cmch-vellore.edu/divya-elizabeth-muliyil/",
         scholarUrl: null,
     },
@@ -36,6 +38,7 @@ const facultyData = [
         expertise: ["Introduction to Epidemiology"],
         bio: "Jacob John leads the foundational sessions on the epidemiological approach, giving students a robust understanding of disease dynamics and practical public health research methodology.",
         image: "/faculty/jacob_john.jpg",
+        imagePosition: "center center",
         profileUrl: "https://www.cmch-vellore.edu/jacob-john/",
         scholarUrl: "https://scholar.google.com/citations?user=1YQc1_wAAAAJ",
     },
@@ -69,6 +72,7 @@ const facultyData = [
         expertise: ["Systematic Reviews", "Software Training"],
         bio: "Marconi bridges the gap between raw literature and robust conclusions through systematic review methodology and statistical computing.",
         image: "/faculty/marconi.jpg",
+        imagePosition: "center 20%",
         profileUrl: "https://www.cmch-vellore.edu/sam-marconi/",
         scholarUrl: "https://scholar.google.com/citations?user=WY-PJXUAAAAJ",
     },
@@ -91,6 +95,7 @@ const facultyData = [
         expertise: ["Sampling techniques", "Statistics"],
         bio: "Specialising in rigorous sampling methods, Venkata Raghava Mohan helps students deeply understand population statistics and proper methodological design.",
         image: "/faculty/venkata.jpg",
+        imagePosition: "center 20%",
         profileUrl: "https://www.cmch-vellore.edu/venkata-raghava-m/",
         scholarUrl: null,
     },
@@ -147,7 +152,8 @@ export default function FacultyPage() {
                                         src={faculty.image}
                                         alt={faculty.name}
                                         fill
-                                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                        style={{ objectPosition: faculty.imagePosition ?? "center 20%" }}
                                     />
                                 ) : (
                                     <GraduationCap size={48} className="text-slate-400 opacity-50 relative z-10 group-hover:scale-110 transition-transform duration-500" />
@@ -227,7 +233,8 @@ export default function FacultyPage() {
                                             src={selectedFaculty.image}
                                             alt={selectedFaculty.name}
                                             fill
-                                            className="object-cover object-top"
+                                            className="object-cover"
+                                            style={{ objectPosition: selectedFaculty.imagePosition ?? "center 20%" }}
                                         />
                                     ) : (
                                         <GraduationCap size={72} className="text-slate-300 opacity-60 z-10" />
