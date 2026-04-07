@@ -52,7 +52,7 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-secondary-light" />
-                                <a href="mailto:chad@cmcvellore.ac.in" className="hover:text-white transition-colors">chad@cmcvellore.ac.in</a>
+                                <a href="mailto:chadat@cmcvellore.ac.in" className="hover:text-white transition-colors">chadat@cmcvellore.ac.in</a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Phone className="w-5 h-5 text-secondary-light" />
@@ -64,6 +64,7 @@ export default function Footer() {
                 </div>
 
                 <div className="border-t border-slate-800 mt-12 pt-8 text-sm text-center text-slate-500">
+                    <p className="mb-2">Organized by <strong>Department of Community Health & Centre for Public Health</strong>, CMC Vellore.</p>
                     <p>&copy; {new Date().getFullYear()} Christian Medical College, Vellore. All rights reserved.</p>
                 </div>
             </div>

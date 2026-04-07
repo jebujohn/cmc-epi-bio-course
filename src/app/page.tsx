@@ -50,10 +50,11 @@ export default function Home() {
               Principles and Practice of <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-green-500">Epidemiology</span>
             </motion.h1>
 
-            <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
-              Designed for medical college faculty, postgraduate students, and researchers.
+            <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Designed for medical faculty, postgraduate students and researchers <span className="font-medium text-primary">without formal epidemiology training</span>. 
+              Enhance skills in clinical research, decision-making, and health management.
               <br className="hidden md:block" />
-              <span className="text-primary font-bold">Fee: INR 8850</span> (Inclusive of taxes). 
+              <span className="text-primary font-bold">Fee: INR 8850</span> (Inclusive of GST). 
               Limited to <span className="font-bold text-slate-900">40 seats</span>. 
               <br className="hidden md:block" /> <span className="text-sm font-medium text-slate-500">(Accommodation charges extra)</span>
             </motion.p>
@@ -88,6 +89,15 @@ export default function Home() {
                   <p className="text-sm font-semibold text-slate-900">CHTC Bagayam, CMC Vellore</p>
                 </div>
               </div>
+              <div className="flex items-center gap-3">
+                <div className="bg-orange-100 p-2.5 rounded-lg text-orange-600">
+                  <Calendar size={22} />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Application Deadline</p>
+                  <p className="text-sm font-semibold text-slate-900">May 25, 2026</p>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -111,7 +121,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Hands-On Sessions</h3>
               <p className="text-slate-600 leading-relaxed">
-                Move beyond theory. Our curriculum heavily emphasizes practical, software-based learning using R and SPSS on real datasets.
+                Move beyond theory. Our curriculum heavily emphasizes software sessions including <strong>R, SPSS, Epi Info, and Zotero</strong>.
               </p>
             </div>
 
