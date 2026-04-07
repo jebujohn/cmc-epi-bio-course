@@ -101,7 +101,7 @@ export default function RegistrationPage() {
                                             value={formData.name}
                                             onChange={handleChange}
                                             className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
-                                            placeholder="Dr. John Doe"
+                                            placeholder="John Doe"
                                         />
                                     </div>
 

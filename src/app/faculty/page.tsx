@@ -7,43 +7,43 @@ import { Search, X, MapPin, BookOpen, ExternalLink, GraduationCap } from "lucide
 const facultyData = [
     {
         id: 1,
-        name: "Dr. Jacob John",
+        name: "Jacob John",
         designation: "Faculty",
         affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Introduction to Epidemiology"],
-        bio: "Dr. Jacob John leads the foundational sessions on the epidemiological approach, giving students a robust understanding of disease dynamics and practical public health research methodology.",
+        bio: "Jacob John leads the foundational sessions on the epidemiological approach, giving students a robust understanding of disease dynamics and practical public health research methodology.",
         image: "/faculty/jacob_john.jpg"
     },
     {
         id: 2,
-        name: "Dr Anu Oommen",
+        name: "Anu Oommen",
         designation: "Professor",
         affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Morbidity and Mortality Measurement"],
-        bio: "An expert in quantifying disease frequency, Dr Anu Oommen teaches the essential principles of measurement errors, reliability, and validity within epidemiological data.",
+        bio: "An expert in quantifying disease frequency, Anu Oommen teaches the essential principles of measurement errors, reliability, and validity within epidemiological data.",
         image: "/faculty/anu.jpg"
     },
     {
         id: 3,
-        name: "Dr. Venkata Raghava Mohan",
+        name: "Venkata Raghava Mohan",
         designation: "Faculty",
         affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Sampling techniques", "Statistics"],
-        bio: "Specializing in rigorous sampling methods, Dr. Venkata Raghava Mohan helps students deeply understand population statistics and proper methodological design.",
+        bio: "Specializing in rigorous sampling methods, Venkata Raghava Mohan helps students deeply understand population statistics and proper methodological design.",
         image: "/faculty/venkata.jpg"
     },
     {
         id: 4,
-        name: "Dr. JP Muliyil",
+        name: "JP Muliyil",
         designation: "Eminent Professor",
         affiliation: "CMC Vellore",
         expertise: ["Case Control Studies", "Clinical Trials"],
-        bio: "A pioneer in public health in India, Dr. JP Muliyil guides participants through rigorous study designs with real-world complexities.",
+        bio: "A pioneer in public health in India, JP Muliyil guides participants through rigorous study designs with real-world complexities.",
         image: "/faculty/jp_muliyil.jpg"
     },
     {
         id: 5,
-        name: "Dr. Divya Muliyil",
+        name: "Divya Muliyil",
         designation: "Faculty",
         affiliation: "CMC Vellore",
         expertise: ["Causal Analysis", "Study Designs"],
@@ -52,16 +52,16 @@ const facultyData = [
     },
     {
         id: 6,
-        name: "Dr. Sam Marconi",
+        name: "Sam Marconi",
         designation: "Faculty",
         affiliation: "CMC Vellore",
         expertise: ["Systematic Reviews", "Software Training"],
-        bio: "Dr. Marconi bridges the gap between raw literature and robust conclusions through systematic review methodology and statistical computing.",
+        bio: "Marconi bridges the gap between raw literature and robust conclusions through systematic review methodology and statistical computing.",
         image: "/faculty/marconi.jpg"
     },
     {
         id: 7,
-        name: "Dr. Shalini Paul",
+        name: "Shalini Paul",
         designation: "Faculty",
         affiliation: "CMC Vellore",
         expertise: ["Survey Methods", "Statistics"],
@@ -70,7 +70,7 @@ const facultyData = [
     },
     {
         id: 8,
-        name: "Dr. Jackwin Sam",
+        name: "Jackwin Sam",
         designation: "Assistant Professor",
         affiliation: "CMC Vellore",
         expertise: ["Practical Software Sessions", "Data Management"],
