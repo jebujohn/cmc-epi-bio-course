@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Calendar, MapPin, Users, Award, PlayCircle, NotebookText, Star, GraduationCap } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, Users, Award, PlayCircle, NotebookText } from "lucide-react";
 
 export default function Home() {
   const staggerContainer = {
@@ -28,12 +28,12 @@ export default function Home() {
         <div className="absolute opacity-10 blur-3xl rounded-full bg-primary/20 w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-0"></div>
         <div className="absolute opacity-20 blur-3xl rounded-full bg-secondary/20 w-96 h-96 bottom-0 right-0 translate-x-1/2 translate-y-1/2 z-0"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 relative z-10 flex flex-col md:flex-row items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 relative z-10 flex flex-col items-center justify-center">
           <motion.div
             initial="hidden"
             animate="show"
             variants={staggerContainer}
-            className="md:w-3/5 md:pr-12 text-center md:text-left"
+            className="max-w-4xl mx-auto text-center"
           >
             <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-primary font-medium text-sm mb-6 border border-blue-200 shadow-sm">
               <span className="relative flex h-2 w-2">
@@ -52,7 +52,7 @@ export default function Home() {
               Designed for medical college faculty, postgraduate students, health managers, and researchers at Christian Medical College, Vellore.
             </motion.p>
 
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center gap-4 justify-center">
               <Link href="/registration" className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-white font-semibold flex items-center justify-center gap-2 hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                 Register Now
                 <ArrowRight size={20} />
@@ -63,7 +63,7 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6 mt-12 pt-8 border-t border-slate-200">
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6 mt-12 pt-8 border-t border-slate-200 justify-center">
               <div className="flex items-center gap-3">
                 <div className="bg-slate-100 p-2.5 rounded-lg text-primary">
                   <Calendar size={22} />
@@ -85,37 +85,6 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="md:w-2/5 mt-16 md:mt-0"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 aspect-[4/5] md:aspect-auto md:h-[500px]">
-              {/* Using a placeholder gradient pattern since we don't have real images */}
-              <div className="absolute inset-0 bg-gradient-to-b from-slate-100 to-slate-200 flex items-center justify-center">
-                <div className="grid grid-cols-2 gap-2 p-4 w-full h-full">
-                  <div className="bg-white/50 backdrop-blur-md rounded-xl border border-white max-h-48 shadow-sm"></div>
-                  <div className="bg-white/40 backdrop-blur-md rounded-xl border border-white max-h-32 mt-auto shadow-sm"></div>
-                  <div className="bg-white/60 backdrop-blur-md rounded-xl border border-white mt-auto max-h-40 col-span-2 shadow-sm flex items-center justify-center">
-                    <GraduationCap className="text-slate-300 w-16 h-16" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md rounded-xl p-4 border border-white shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="bg-green-100 text-green-700 p-2 rounded-full">
-                    <Users size={20} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900">Join 500+ Alumni</p>
-                    <p className="text-xs text-slate-500">From 12+ Institutions</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -233,66 +202,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-dark/20 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-secondary/20 blur-3xl"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">What Our Participants Say</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              Hear from recent graduates of the EpiBio program.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl">
-              <div className="flex text-yellow-500 mb-4">
-                <Star size={18} fill="currentColor" />
-                <Star size={18} fill="currentColor" />
-                <Star size={18} fill="currentColor" />
-                <Star size={18} fill="currentColor" />
-                <Star size={18} fill="currentColor" />
-              </div>
-              <p className="text-slate-300 italic mb-6 leading-relaxed">
-                "The way they simplified complex biostatistical models and made them applicable to clinical scenarios was phenomenal. I am now confident in designing my own trials."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center font-bold text-lg text-slate-300">
-                  DR
-                </div>
-                <div>
-                  <h4 className="font-semibold">Dr. Rahul Sharma</h4>
-                  <p className="text-sm text-slate-400">Senior Resident, AIIMS Delhi</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl">
-              <div className="flex text-yellow-500 mb-4">
-                <Star size={18} fill="currentColor" />
-                <Star size={18} fill="currentColor" />
-                <Star size={18} fill="currentColor" />
-                <Star size={18} fill="currentColor" />
-                <Star size={18} fill="currentColor" />
-              </div>
-              <p className="text-slate-300 italic mb-6 leading-relaxed">
-                "An incredibly well-structured course. The hands-on sessions in R were exactly what I needed to elevate my public health research publications."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center font-bold text-lg text-slate-300">
-                  AJ
-                </div>
-                <div>
-                  <h4 className="font-semibold">Anita Joseph</h4>
-                  <p className="text-sm text-slate-400">Public Health Researcher, WHO</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

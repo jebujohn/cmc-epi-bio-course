@@ -1,32 +1,37 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0e4b85;
-  --color-primary-light: #2563eb;
-  --color-primary-dark: #1e3a8a;
+  --color-primary: #204C8E;
+  --color-primary-light: #2e67bd;
+  --color-primary-dark: #09151A;
   
-  --color-secondary: #166534;
-  --color-secondary-light: #22c55e;
+  --color-secondary: #CC3000;
+  --color-secondary-light: #FFAD94;
   
-  --color-background: #ffffff;
-  --color-surface: #f8fafc;
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
+  --color-background: #FFFFFF;
+  --color-surface: #EFEFEF;
+  --color-text-primary: #38383C;
+  --color-text-secondary: #403C4E;
   
-  --color-accent: #f59e0b;
+  --color-accent: #FFD8CC;
+  --font-sans: var(--font-open-sans), Arial, sans-serif;
+  --font-serif: var(--font-merriweather), serif;
 }
 
 @layer base {
   body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
-    font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+    font-family: var(--font-open-sans), Arial, Helvetica, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-merriweather), serif;
   }
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
