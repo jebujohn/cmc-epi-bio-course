@@ -6,15 +6,6 @@ import { Search, X, MapPin, BookOpen, ExternalLink, GraduationCap } from "lucide
 
 const facultyData = [
     {
-        id: 1,
-        name: "Jacob John",
-        designation: "Faculty",
-        affiliation: "Dept. of Community Health, CMC Vellore",
-        expertise: ["Introduction to Epidemiology"],
-        bio: "Jacob John leads the foundational sessions on the epidemiological approach, giving students a robust understanding of disease dynamics and practical public health research methodology.",
-        image: "/faculty/jacob_john.jpg"
-    },
-    {
         id: 2,
         name: "Anu Oommen",
         designation: "Professor",
@@ -24,13 +15,31 @@ const facultyData = [
         image: "/faculty/anu.jpg"
     },
     {
-        id: 3,
-        name: "Venkata Raghava Mohan",
+        id: 5,
+        name: "Divya Muliyil",
+        designation: "Faculty",
+        affiliation: "CMC Vellore",
+        expertise: ["Causal Analysis", "Study Designs"],
+        bio: "Focuses on causality evaluation and complex epidemiological frameworks, ensuring students can design rigorous cohort and cross-sectional studies.",
+        image: "/faculty/divya.jpg"
+    },
+    {
+        id: 1,
+        name: "Jacob John",
         designation: "Faculty",
         affiliation: "Dept. of Community Health, CMC Vellore",
-        expertise: ["Sampling techniques", "Statistics"],
-        bio: "Specializing in rigorous sampling methods, Venkata Raghava Mohan helps students deeply understand population statistics and proper methodological design.",
-        image: "/faculty/venkata.jpg"
+        expertise: ["Introduction to Epidemiology"],
+        bio: "Jacob John leads the foundational sessions on the epidemiological approach, giving students a robust understanding of disease dynamics and practical public health research methodology.",
+        image: "/faculty/jacob_john.jpg"
+    },
+    {
+        id: 8,
+        name: "Jackwin Sam",
+        designation: "Assistant Professor",
+        affiliation: "CMC Vellore",
+        expertise: ["Practical Software Sessions", "Data Management"],
+        bio: "Leads the intensive hands-on sessions utilizing SPSS, Epi Info, and Zotero ensuring practical technological capability.",
+        image: "/faculty/jackwin.jpg"
     },
     {
         id: 4,
@@ -40,15 +49,6 @@ const facultyData = [
         expertise: ["Case Control Studies", "Clinical Trials"],
         bio: "A pioneer in public health in India, JP Muliyil guides participants through rigorous study designs with real-world complexities.",
         image: "/faculty/jp_muliyil.jpg"
-    },
-    {
-        id: 5,
-        name: "Divya Muliyil",
-        designation: "Faculty",
-        affiliation: "CMC Vellore",
-        expertise: ["Causal Analysis", "Study Designs"],
-        bio: "Focuses on causality evaluation and complex epidemiological frameworks, ensuring students can design rigorous cohort and cross-sectional studies.",
-        image: "/faculty/divya.jpg"
     },
     {
         id: 6,
@@ -69,14 +69,14 @@ const facultyData = [
         image: "/faculty/shalini.jpg"
     },
     {
-        id: 8,
-        name: "Jackwin Sam",
-        designation: "Assistant Professor",
-        affiliation: "CMC Vellore",
-        expertise: ["Practical Software Sessions", "Data Management"],
-        bio: "Leads the intensive hands-on sessions utilizing SPSS, Epi Info, and Zotero ensuring practical technological capability.",
-        image: "/faculty/jackwin.jpg"
-    }
+        id: 3,
+        name: "Venkata Raghava Mohan",
+        designation: "Faculty",
+        affiliation: "Dept. of Community Health, CMC Vellore",
+        expertise: ["Sampling techniques", "Statistics"],
+        bio: "Specializing in rigorous sampling methods, Venkata Raghava Mohan helps students deeply understand population statistics and proper methodological design.",
+        image: "/faculty/venkata.jpg"
+    },
 ];
 
 export default function FacultyPage() {
