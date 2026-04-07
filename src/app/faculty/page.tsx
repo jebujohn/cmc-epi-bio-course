@@ -157,7 +157,7 @@ export default function FacultyPage() {
                                         src={faculty.image}
                                         alt={faculty.name}
                                         fill
-                                        className={`${faculty.fit === 'contain' ? 'object-contain p-8' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`}
+                                        className={`${faculty.fit === 'contain' ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`}
                                         style={{ objectPosition: faculty.imagePosition ?? "center 20%" }}
                                     />
                                 ) : (
@@ -238,7 +238,7 @@ export default function FacultyPage() {
                                             src={selectedFaculty.image}
                                             alt={selectedFaculty.name}
                                             fill
-                                            className={`${selectedFaculty.fit === 'contain' ? 'object-contain p-8' : 'object-cover'}`}
+                                            className={`${selectedFaculty.fit === 'contain' ? 'object-contain' : 'object-cover'}`}
                                             style={{ objectPosition: selectedFaculty.imagePosition ?? "center 20%" }}
                                         />
                                     ) : (
