@@ -53,7 +53,10 @@ export default function RegistrationPage() {
                         Course <span className="text-primary">Registration</span>
                     </h1>
                     <p className="text-slate-600 max-w-xl mx-auto text-lg leading-relaxed">
-                        Apply now to secure your spot for the 2026 cohort. Applications are reviewed on a rolling basis.
+                        Course fee: <span className="font-bold text-slate-900">INR 8850</span> (inclusive of taxes). 
+                        Limited to <span className="font-bold text-slate-900">40 registrations</span>.
+                        <br /> <span className="text-sm text-slate-500 font-medium whitespace-nowrap">(Accommodation charges extra)</span>
+                        <br /> Applications are reviewed on a rolling basis.
                     </p>
                 </div>
 

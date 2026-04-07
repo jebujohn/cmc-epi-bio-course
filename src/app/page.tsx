@@ -51,7 +51,11 @@ export default function Home() {
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
-              Designed for medical college faculty, postgraduate students, health managers, and researchers at Christian Medical College, Vellore.
+              Designed for medical college faculty, postgraduate students, and researchers.
+              <br className="hidden md:block" />
+              <span className="text-primary font-bold">Fee: INR 8850</span> (Inclusive of taxes). 
+              Limited to <span className="font-bold text-slate-900">40 seats</span>. 
+              <br className="hidden md:block" /> <span className="text-sm font-medium text-slate-500">(Accommodation charges extra)</span>
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center gap-4 justify-center">
