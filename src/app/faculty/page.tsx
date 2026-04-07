@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, MapPin, BookOpen, ExternalLink, GraduationCap } from "lucide-react";
 
@@ -12,34 +13,42 @@ const facultyData = [
         affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Morbidity and Mortality Measurement"],
         bio: "An expert in quantifying disease frequency, Anu Oommen teaches the essential principles of measurement errors, reliability, and validity within epidemiological data.",
-        image: "/faculty/anu.jpg"
+        image: "/faculty/anu.jpg",
+        profileUrl: "https://www.cmch-vellore.edu/anu-mary-oommen/",
+        scholarUrl: "https://scholar.google.com/citations?user=opEL128AAAAJ",
     },
     {
         id: 5,
         name: "Divya Muliyil",
-        designation: "Faculty",
-        affiliation: "CMC Vellore",
+        designation: "Professor",
+        affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Causal Analysis", "Study Designs"],
         bio: "Focuses on causality evaluation and complex epidemiological frameworks, ensuring students can design rigorous cohort and cross-sectional studies.",
-        image: "/faculty/divya.jpg"
+        image: "/faculty/divya.jpg",
+        profileUrl: "https://www.cmch-vellore.edu/divya-elizabeth-muliyil/",
+        scholarUrl: null,
     },
     {
         id: 1,
         name: "Jacob John",
-        designation: "Faculty",
+        designation: "Professor",
         affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Introduction to Epidemiology"],
         bio: "Jacob John leads the foundational sessions on the epidemiological approach, giving students a robust understanding of disease dynamics and practical public health research methodology.",
-        image: "/faculty/jacob_john.jpg"
+        image: null,
+        profileUrl: "https://www.cmch-vellore.edu/jacob-john/",
+        scholarUrl: "https://scholar.google.com/citations?user=1YQc1_wAAAAJ",
     },
     {
         id: 8,
         name: "Jackwin Sam",
         designation: "Assistant Professor",
-        affiliation: "CMC Vellore",
+        affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Practical Software Sessions", "Data Management"],
-        bio: "Leads the intensive hands-on sessions utilizing SPSS, Epi Info, and Zotero ensuring practical technological capability.",
-        image: "/faculty/jackwin.jpg"
+        bio: "Leads the intensive hands-on sessions utilising SPSS, Epi Info, and Zotero ensuring practical technological capability.",
+        image: null,
+        profileUrl: "https://www.cmch-vellore.edu/jackwin-sam-paul-g/",
+        scholarUrl: "https://scholar.google.com/citations?user=tyvpQucAAAAJ",
     },
     {
         id: 4,
@@ -48,34 +57,42 @@ const facultyData = [
         affiliation: "CMC Vellore",
         expertise: ["Case Control Studies", "Clinical Trials"],
         bio: "A pioneer in public health in India, JP Muliyil guides participants through rigorous study designs with real-world complexities.",
-        image: "/faculty/jp_muliyil.jpg"
+        image: null,
+        profileUrl: "https://en.wikipedia.org/wiki/Jayaprakash_Muliyil",
+        scholarUrl: null,
     },
     {
         id: 6,
         name: "Sam Marconi",
-        designation: "Faculty",
-        affiliation: "CMC Vellore",
+        designation: "Associate Professor",
+        affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Systematic Reviews", "Software Training"],
         bio: "Marconi bridges the gap between raw literature and robust conclusions through systematic review methodology and statistical computing.",
-        image: "/faculty/marconi.jpg"
+        image: "/faculty/marconi.jpg",
+        profileUrl: "https://www.cmch-vellore.edu/sam-marconi/",
+        scholarUrl: "https://scholar.google.com/citations?user=WY-PJXUAAAAJ",
     },
     {
         id: 7,
-        name: "Shalini Paul",
-        designation: "Faculty",
-        affiliation: "CMC Vellore",
+        name: "Shalini Jeyapaul",
+        designation: "Associate Professor",
+        affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Survey Methods", "Statistics"],
-        bio: "An expert in survey methodology and data extraction, handling intricate queries related to statistical modeling in community health.",
-        image: "/faculty/shalini.jpg"
+        bio: "An expert in survey methodology and data extraction, handling intricate queries related to statistical modelling in community health.",
+        image: null,
+        profileUrl: "https://www.cmch-vellore.edu/dr-shalini-j/",
+        scholarUrl: null,
     },
     {
         id: 3,
         name: "Venkata Raghava Mohan",
-        designation: "Faculty",
+        designation: "Professor",
         affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Sampling techniques", "Statistics"],
-        bio: "Specializing in rigorous sampling methods, Venkata Raghava Mohan helps students deeply understand population statistics and proper methodological design.",
-        image: "/faculty/venkata.jpg"
+        bio: "Specialising in rigorous sampling methods, Venkata Raghava Mohan helps students deeply understand population statistics and proper methodological design.",
+        image: null,
+        profileUrl: "https://www.cmch-vellore.edu/venkata-raghava-m/",
+        scholarUrl: null,
     },
 ];
 
@@ -124,16 +141,33 @@ export default function FacultyPage() {
                             onClick={() => setSelectedFaculty(faculty)}
                         >
                             <div className="aspect-[4/3] bg-slate-200 relative overflow-hidden flex items-center justify-center">
-                                {/* Placeholder for image, since no real image exists */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
-                                <GraduationCap size={48} className="text-slate-400 opacity-50 relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                                {faculty.image ? (
+                                    <Image
+                                        src={faculty.image}
+                                        alt={faculty.name}
+                                        fill
+                                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                ) : (
+                                    <GraduationCap size={48} className="text-slate-400 opacity-50 relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                                )}
                             </div>
 
                             <div className="p-6 relative">
-                                <div className="absolute -top-7 right-6 bg-white p-2 rounded-full shadow-md z-20">
-                                    <div className="bg-primary/10 text-primary w-10 h-10 rounded-full flex items-center justify-center">
-                                        <ExternalLink size={18} />
-                                    </div>
+                                <div className="absolute -top-7 right-6 z-20">
+                                    <a
+                                        href={faculty.profileUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="bg-white p-2 rounded-full shadow-md flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                                        title="View academic profile"
+                                    >
+                                        <div className="bg-primary/10 text-primary w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                            <ExternalLink size={18} />
+                                        </div>
+                                    </a>
                                 </div>
 
                                 <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-primary transition-colors">{faculty.name}</h3>
@@ -187,9 +221,17 @@ export default function FacultyPage() {
                                 </button>
 
                                 <div className="md:w-2/5 md:min-h-[500px] bg-slate-100 relative flex items-center justify-center border-r border-slate-200 min-h-[300px]">
-                                    {/* Modal Image Placeholder */}
                                     <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-secondary/10"></div>
-                                    <GraduationCap size={72} className="text-slate-300 opacity-60 z-10" />
+                                    {selectedFaculty.image ? (
+                                        <Image
+                                            src={selectedFaculty.image}
+                                            alt={selectedFaculty.name}
+                                            fill
+                                            className="object-cover object-top"
+                                        />
+                                    ) : (
+                                        <GraduationCap size={72} className="text-slate-300 opacity-60 z-10" />
+                                    )}
                                 </div>
 
                                 <div className="md:w-3/5 p-8 md:p-12 flex flex-col">
@@ -219,6 +261,28 @@ export default function FacultyPage() {
                                         {selectedFaculty.bio}
                                     </p>
 
+                                    <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap gap-3">
+                                        <a
+                                            href={selectedFaculty.profileUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-dark transition-colors"
+                                        >
+                                            <ExternalLink size={15} />
+                                            Academic Profile
+                                        </a>
+                                        {selectedFaculty.scholarUrl && (
+                                            <a
+                                                href={selectedFaculty.scholarUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 text-sm font-semibold rounded-lg hover:bg-slate-200 transition-colors"
+                                            >
+                                                <ExternalLink size={15} />
+                                                Google Scholar
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </motion.div>
                         </div>
