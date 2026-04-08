@@ -106,6 +106,19 @@ const facultyData = [
         profileUrl: "https://www.cmch-vellore.edu/venkata-raghava-m/",
         scholarUrl: null,
     },
+    {
+        id: 9,
+        name: "Dorothy Lall",
+        designation: "Faculty",
+        affiliation: "Dept. of Community Health, CMC Vellore",
+        expertise: ["Health Policy", "Systems Research"],
+        bio: "Specialising in health policy and systems research, Dorothy Lall brings extensive expertise in primary healthcare governance and implementation science.",
+        image: "/faculty/dorothy.jpg",
+        imagePosition: "center 20%",
+        fit: "cover",
+        profileUrl: "https://www.cmch-vellore.edu/",
+        scholarUrl: null,
+    },
 ];
 
 export default function FacultyPage() {
