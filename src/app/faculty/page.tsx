@@ -125,10 +125,12 @@ export default function FacultyPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedFaculty, setSelectedFaculty] = useState<typeof facultyData[0] | null>(null);
 
-    const filteredFaculty = facultyData.filter(f =>
-        f.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        f.expertise.some(e => e.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+    const filteredFaculty = facultyData
+        .filter(f =>
+            f.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            f.expertise.some(e => e.toLowerCase().includes(searchTerm.toLowerCase()))
+        )
+        .sort((a, b) => a.name.localeCompare(b.name));
 
     return (
         <div className="bg-slate-50 min-h-screen py-16">
