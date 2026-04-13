@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { CreditCard, ShieldCheck, CheckCircle2, Lock, Download, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
-export default function PaymentPage() {
+function PaymentPageContent() {
     const searchParams = useSearchParams();
     const [isProcessing, setIsProcessing] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -197,5 +197,13 @@ export default function PaymentPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function PaymentPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center p-10"><p className="text-slate-500 font-medium">Loading payment details...</p></div>}>
+            <PaymentPageContent />
+        </Suspense>
     );
 }
