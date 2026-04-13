@@ -9,6 +9,7 @@ generator client {
 
 model Registration {
   id            String   @id @default(cuid())
+  authCode      String?  @unique
   name          String
   email         String   @unique
   institution   String

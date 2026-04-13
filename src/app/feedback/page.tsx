@@ -94,7 +94,7 @@ export default function FeedbackPage() {
                         Daily Feedback
                     </h1>
                     <p className="text-slate-600 max-w-xl mx-auto text-lg leading-relaxed">
-                        Your daily feedback helps us continuously improve the course. To prevent spam, you must authenticate using your Participant ID or Registered Email.
+                        Your daily feedback helps us continuously improve the course. To prevent spam, you must authenticate using your unique 6-letter Participant Passcode (found in your registration email).
                     </p>
                 </div>
 
@@ -151,16 +151,17 @@ export default function FeedbackPage() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="participantId" className="text-sm font-semibold text-slate-700">Participant ID / Registered Email *</label>
+                                        <label htmlFor="participantId" className="text-sm font-semibold text-slate-700">6-Letter Participant Passcode *</label>
                                         <input
                                             type="text"
                                             id="participantId"
                                             name="participantId"
                                             required
+                                            maxLength={6}
                                             value={formData.participantId}
-                                            onChange={handleChange}
-                                            className="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
-                                            placeholder="e.g. EP26-042 or email"
+                                            onChange={(e) => handleChange({ target: { name: 'participantId', value: e.target.value.toUpperCase() } } as any)}
+                                            className="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900 font-mono tracking-widest uppercase"
+                                            placeholder="e.g. A7K9XP"
                                         />
                                     </div>
                                 </div>

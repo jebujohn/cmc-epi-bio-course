@@ -58,8 +58,9 @@ export async function sendRegistrationConfirmation(params: {
     name: string;
     institution: string;
     qualification: string;
+    authCode: string;
 }) {
-    const { toEmail, name, institution, qualification } = params;
+    const { toEmail, name, institution, qualification, authCode } = params;
 
     const body = `
 <h2 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#1e293b;">Application Received!</h2>
@@ -73,6 +74,12 @@ export async function sendRegistrationConfirmation(params: {
     <tr><td style="padding:4px 0;font-size:14px;color:#64748b;">Qualification</td><td style="padding:4px 0;font-size:14px;font-weight:600;color:#1e293b;">${qualification}</td></tr>
     <tr><td style="padding:4px 0;font-size:14px;color:#64748b;">Status</td><td style="padding:4px 0;font-size:14px;font-weight:600;color:#f59e0b;">⏳ Under Review</td></tr>
   </table>
+</div>
+
+<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:20px 24px;margin-bottom:28px;text-align:center;">
+  <p style="margin:0 0 8px;font-size:13px;font-weight:700;color:#b45309;text-transform:uppercase;">Participant Passcode</p>
+  <p style="margin:0 0 8px;font-size:28px;font-weight:800;color:#92400e;letter-spacing:0.15em;font-family:monospace;">${authCode}</p>
+  <p style="margin:0;font-size:13px;color:#b45309;">Please save this 6-letter code securely! You will need it to submit daily course feedback.</p>
 </div>
 
 <p style="margin:0 0 8px;font-size:15px;color:#475569;">What happens next?</p>

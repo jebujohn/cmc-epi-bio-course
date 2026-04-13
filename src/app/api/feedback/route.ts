@@ -9,21 +9,18 @@ export async function POST(req: Request) {
         const { participantId, day, overall, pace, content, faculty, comments } = body;
 
         if (!participantId) {
-            return NextResponse.json({ error: "Participant ID or Email is required for authentication." }, { status: 401 });
+            return NextResponse.json({ error: "Participant Passcode is required for authentication." }, { status: 401 });
         }
 
-        // Verify that the participant is a registered user
+        // Verify that the participant is a registered user via their 6-letter Passcode
         const registration = await prisma.registration.findFirst({
             where: {
-                OR: [
-                    { email: participantId },
-                    { id: participantId }
-                ]
+                authCode: participantId.trim().toUpperCase()
             }
         });
 
         if (!registration) {
-            return NextResponse.json({ error: "Authentication failed. Could not find a registered participant with this ID or Email." }, { status: 403 });
+            return NextResponse.json({ error: "Authentication failed. Invalid 6-letter passcode." }, { status: 403 });
         }
 
         if (!day || !overall || !pace || !content || !faculty) {

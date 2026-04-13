@@ -4,6 +4,15 @@ import { sendRegistrationConfirmation } from "@/lib/email";
 
 export const dynamic = "force-dynamic";
 
+function generateAuthCode() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
 export async function POST(req: Request) {
     try {
         const body = await req.json();
@@ -22,9 +31,12 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Email already registered for the course." }, { status: 409 });
         }
 
+        const authCode = generateAuthCode();
+
         // Save registration to database
         const registration = await prisma.registration.create({
             data: {
+                authCode,
                 name,
                 email,
                 institution,
@@ -35,7 +47,7 @@ export async function POST(req: Request) {
         });
 
         // Send confirmation email (non-blocking — failure does not break registration)
-        sendRegistrationConfirmation({ toEmail: email, name, institution, qualification })
+        sendRegistrationConfirmation({ toEmail: email, name, institution, qualification, authCode })
             .catch((err) => console.warn("[Email] Registration confirmation failed:", err?.message));
 
         return NextResponse.json({
