@@ -8,13 +8,31 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { participantId, day, overall, pace, content, faculty, comments } = body;
 
+        if (!participantId) {
+            return NextResponse.json({ error: "Participant ID or Email is required for authentication." }, { status: 401 });
+        }
+
+        // Verify that the participant is a registered user
+        const registration = await prisma.registration.findFirst({
+            where: {
+                OR: [
+                    { email: participantId },
+                    { id: participantId }
+                ]
+            }
+        });
+
+        if (!registration) {
+            return NextResponse.json({ error: "Authentication failed. Could not find a registered participant with this ID or Email." }, { status: 403 });
+        }
+
         if (!day || !overall || !pace || !content || !faculty) {
             return NextResponse.json({ error: "Missing required rating fields" }, { status: 400 });
         }
 
         const feedback = await prisma.feedback.create({
             data: {
-                participantId: participantId || null,
+                participantId: registration.id, // Securely link to their unique database ID
                 day,
                 overall,
                 pace,

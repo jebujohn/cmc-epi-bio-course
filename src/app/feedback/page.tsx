@@ -94,7 +94,7 @@ export default function FeedbackPage() {
                         Daily Feedback
                     </h1>
                     <p className="text-slate-600 max-w-xl mx-auto text-lg leading-relaxed">
-                        Your daily feedback helps us continuously improve the course. Responses are anonymous unless you choose to provide your Participant ID.
+                        Your daily feedback helps us continuously improve the course. To prevent spam, you must authenticate using your Participant ID or Registered Email.
                     </p>
                 </div>
 
@@ -151,11 +151,12 @@ export default function FeedbackPage() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="participantId" className="text-sm font-semibold text-slate-700">Participant ID / Email (Optional)</label>
+                                        <label htmlFor="participantId" className="text-sm font-semibold text-slate-700">Participant ID / Registered Email *</label>
                                         <input
                                             type="text"
                                             id="participantId"
                                             name="participantId"
+                                            required
                                             value={formData.participantId}
                                             onChange={handleChange}
                                             className="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
@@ -193,7 +194,7 @@ export default function FeedbackPage() {
                                 <div className="pt-6 border-t border-slate-100 flex justify-end">
                                     <button
                                         type="submit"
-                                        disabled={isSubmitting || !formData.ratingOverall || !formData.ratingContent || !formData.ratingFaculty || !formData.ratingPace}
+                                        disabled={isSubmitting || !formData.participantId || !formData.ratingOverall || !formData.ratingContent || !formData.ratingFaculty || !formData.ratingPace}
                                         className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 w-full sm:w-auto justify-center"
                                     >
                                         {isSubmitting ? 'Saving...' : 'Submit Feedback'}
