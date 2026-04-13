@@ -28,31 +28,15 @@ function PaymentPageContent() {
         setIsProcessing(true);
         setError("");
 
-        try {
-            // Mock delay for payment processor UI
-            await new Promise(resolve => setTimeout(resolve, 2000));
+        // TODO: Update this URL to point to CMC's actual institutional payment gateway.
+        // Some gateways require a form POST instead of a GET redirect; adjust here if necessary.
+        const institutionalGatewayUrl = "https://payment.cmcvellore.ac.in/checkout";
+        
+        // Pass the registration ID so the gateway can reference it when pinging your webhook
+        const redirectUrl = `${institutionalGatewayUrl}?ref=${encodeURIComponent(registrationId)}&amount=${amount}`;
 
-            const response = await fetch('/api/payment', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ identifier: registrationId })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                setConfirmedDetails(data.registration);
-                setTransactionId(data.transactionId ?? "");
-                setIsSuccess(true);
-            } else {
-                setError(data.error || "Payment verification failed.");
-            }
-        } catch (err) {
-            console.error(err);
-            setError("Network error. Please try again.");
-        } finally {
-            setIsProcessing(false);
-        }
+        // Redirect the user to the portal
+        window.location.href = redirectUrl;
     };
 
     return (
