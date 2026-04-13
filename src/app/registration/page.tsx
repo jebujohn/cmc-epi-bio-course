@@ -78,7 +78,7 @@ export default function RegistrationPage() {
                                     Thank you for your interest. We have received your application and will review it shortly. A confirmation email has been sent to your inbox.
                                 </p>
                                 <button
-                                    onClick={() => window.location.href = '/payment'}
+                                    onClick={() => window.location.href = `/payment?identifier=${encodeURIComponent(formData.email)}`}
                                     className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
                                 >
                                     Proceed to Course Fee Payment

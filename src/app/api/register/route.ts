@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { sendRegistrationConfirmation } from "@/lib/email";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Email already registered for the course." }, { status: 409 });
         }
 
-        // Store in local SQLite database
+        // Save registration to database
         const registration = await prisma.registration.create({
             data: {
                 name,
@@ -32,6 +33,10 @@ export async function POST(req: Request) {
                 interest
             }
         });
+
+        // Send confirmation email (non-blocking — failure does not break registration)
+        sendRegistrationConfirmation({ toEmail: email, name, institution, qualification })
+            .catch((err) => console.warn("[Email] Registration confirmation failed:", err?.message));
 
         return NextResponse.json({
             success: true,

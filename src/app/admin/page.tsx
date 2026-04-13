@@ -94,6 +94,7 @@ export default function AdminPortal() {
     const getStatusStyles = (status: string) => {
         switch (status) {
             case "APPROVED": return "bg-green-100 text-green-700 border-green-200";
+            case "PAID": return "bg-blue-100 text-blue-700 border-blue-200";
             case "REJECTED": return "bg-red-100 text-red-700 border-red-200";
             default: return "bg-yellow-100 text-yellow-700 border-yellow-200";
         }
@@ -102,6 +103,7 @@ export default function AdminPortal() {
     const getStatusIcon = (status: string) => {
         switch (status) {
             case "APPROVED": return <CheckCircle size={16} />;
+            case "PAID": return <CheckCircle size={16} className="text-blue-500" />;
             case "REJECTED": return <XCircle size={16} />;
             default: return <Clock size={16} />;
         }

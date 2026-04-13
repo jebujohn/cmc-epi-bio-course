@@ -1,24 +1,58 @@
 "use client";
 
-import { useState } from "react";
-import { CreditCard, ShieldCheck, CheckCircle2, Lock, Download } from "lucide-react";
+import { useState, useEffect } from "react";
+import { CreditCard, ShieldCheck, CheckCircle2, Lock, Download, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 
 export default function PaymentPage() {
+    const searchParams = useSearchParams();
     const [isProcessing, setIsProcessing] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [amount] = useState(8850); // 8,850 INR
     const [registrationId, setRegistrationId] = useState("");
+    const [confirmedDetails, setConfirmedDetails] = useState<any>(null);
+    const [transactionId, setTransactionId] = useState("");
+    const [error, setError] = useState("");
 
-    const handlePayment = (e: React.FormEvent) => {
+    useEffect(() => {
+        const identifier = searchParams.get('identifier');
+        if (identifier) {
+            setRegistrationId(identifier);
+        }
+    }, [searchParams]);
+
+    const handlePayment = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!registrationId) return;
         setIsProcessing(true);
-        // Mock Payment Processing via Razorpay/Stripe
-        setTimeout(() => {
+        setError("");
+
+        try {
+            // Mock delay for payment processor UI
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            const response = await fetch('/api/payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ identifier: registrationId })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setConfirmedDetails(data.registration);
+                setTransactionId(data.transactionId ?? "");
+                setIsSuccess(true);
+            } else {
+                setError(data.error || "Payment verification failed.");
+            }
+        } catch (err) {
+            console.error(err);
+            setError("Network error. Please try again.");
+        } finally {
             setIsProcessing(false);
-            setIsSuccess(true);
-        }, 2500);
+        }
     };
 
     return (
@@ -48,19 +82,23 @@ export default function PaymentPage() {
                                     <CheckCircle2 size={48} />
                                 </div>
                                 <h2 className="text-3xl font-bold text-slate-900 mb-2">Payment Successful!</h2>
-                                <p className="text-slate-500 mb-6 font-medium">Transaction ID: TXN-{Math.floor(Math.random() * 90000) + 10000}</p>
+                                <p className="text-slate-500 mb-6 font-medium">Transaction ID: {transactionId}</p>
                                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-8 max-w-sm mx-auto text-left">
                                     <div className="flex justify-between mb-3 border-b border-slate-200 pb-2">
                                         <span className="text-slate-500 text-sm">Amount Paid</span>
                                         <span className="font-bold text-slate-900">₹8,850</span>
                                     </div>
                                     <div className="flex justify-between mb-3 border-b border-slate-200 pb-2">
+                                        <span className="text-slate-500 text-sm">Full Name</span>
+                                        <span className="font-bold text-slate-900">{confirmedDetails?.name}</span>
+                                    </div>
+                                    <div className="flex justify-between mb-3 border-b border-slate-200 pb-2">
                                         <span className="text-slate-500 text-sm">Registration ID</span>
-                                        <span className="font-bold text-slate-900">{registrationId}</span>
+                                        <span className="font-bold text-slate-900 overflow-hidden text-ellipsis ml-4">{confirmedDetails?.id}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-slate-500 text-sm">Course</span>
-                                        <span className="font-bold text-slate-900 text-right">46th ERC</span>
+                                        <span className="text-slate-500 text-sm">Status</span>
+                                        <span className="font-bold text-green-600">{confirmedDetails?.status}</span>
                                     </div>
                                 </div>
                                 <button
@@ -123,6 +161,12 @@ export default function PaymentPage() {
                                 </div>
 
                                 <div className="pt-6 border-t border-slate-100">
+                                    {error && (
+                                        <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-lg text-sm flex items-center gap-3 border border-red-100 animate-shake">
+                                            <AlertCircle size={20} />
+                                            {error}
+                                        </div>
+                                    )}
                                     <button
                                         type="submit"
                                         disabled={isProcessing || !registrationId}

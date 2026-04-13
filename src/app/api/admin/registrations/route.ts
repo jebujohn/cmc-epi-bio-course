@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { sendStatusUpdateEmail } from "@/lib/email";
 
 export const dynamic = "force-dynamic";
 
@@ -38,6 +39,17 @@ export async function PATCH(req: Request) {
             where: { id },
             data: { status },
         });
+
+        // Send approval or rejection email (non-blocking)
+        if (status === "APPROVED" || status === "REJECTED") {
+            sendStatusUpdateEmail({
+                toEmail: updated.email,
+                name: updated.name,
+                status: status as "APPROVED" | "REJECTED",
+                registrationId: updated.id,
+            }).catch((err) => console.warn("[Email] Status update email failed:", err?.message));
+        }
+
         return NextResponse.json(updated);
     } catch (error) {
         console.error("Admin update failed:", error);
