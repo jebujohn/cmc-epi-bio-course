@@ -28,9 +28,30 @@ function PaymentPageContent() {
         setIsProcessing(true);
         setError("");
 
-        // The payment gateway does not provide an API to receive details back.
-        // Redirect the user directly to the payment link.
-        window.location.href = "https://bit.ly/4cZQp8A";
+        try {
+            const res = await fetch("/api/payment/verify", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ identifier: registrationId })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setError(data.error || "An error occurred during verification.");
+                setIsProcessing(false);
+                return;
+            }
+
+            if (data.allowed) {
+                // The payment gateway does not provide an API to receive details back.
+                // Redirect the user directly to the payment link.
+                window.location.href = "https://bit.ly/4cZQp8A";
+            }
+        } catch (err) {
+            setError("Failed to verify registration status. Please try again.");
+            setIsProcessing(false);
+        }
     };
 
     return (
