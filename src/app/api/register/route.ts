@@ -16,9 +16,13 @@ function generateAuthCode() {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, email, institution, qualification, experience, interest } = body;
+        const { 
+            name, email, phone, emergencyContactName, emergencyContactPhone,
+            age, gender, statPackagePreference,
+            institution, qualification, experience, interest 
+        } = body;
 
-        if (!name || !email || !institution || !qualification || !interest) {
+        if (!name || !email || !institution || !qualification || !interest || !phone || !gender) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -39,6 +43,12 @@ export async function POST(req: Request) {
                 authCode,
                 name,
                 email,
+                phone,
+                emergencyContactName,
+                emergencyContactPhone,
+                age: age ? parseInt(age as string, 10) : null,
+                gender,
+                statPackagePreference,
                 institution,
                 qualification,
                 experience,

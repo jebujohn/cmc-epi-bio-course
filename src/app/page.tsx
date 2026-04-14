@@ -109,8 +109,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Why Attend This Course?</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
-              Designed specifically for medical professionals and researchers aiming to strengthen their analytical capabilities.
+            <p className="text-slate-600 max-w-4xl mx-auto text-lg leading-relaxed text-justify md:text-center space-y-4">
+              The focus is on practical aspects of epidemiology and biostatistics as relevant to scientific enquiry. Hands-on training in R and SPSS to enable trainees to perform and interpret analysis of data relevant to these study designs. Highlights include sessions on causal thinking, diagnostic accuracy, and descriptive and analytical designs. Based on feedback, we have incorporated sessions on qualitative and participatory methods as well.
             </p>
           </div>
 
@@ -131,7 +131,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Expert Faculty</h3>
               <p className="text-slate-600 leading-relaxed">
-                Learn directly from renowned professors and practicing epidemiologists from CMC and international partner universities.
+                Learn directly from renowned professors and practicing epidemiologists from CMC.
               </p>
             </div>
 

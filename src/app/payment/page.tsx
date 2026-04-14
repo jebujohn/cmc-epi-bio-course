@@ -28,15 +28,9 @@ function PaymentPageContent() {
         setIsProcessing(true);
         setError("");
 
-        // TODO: Update this URL to point to CMC's actual institutional payment gateway.
-        // Some gateways require a form POST instead of a GET redirect; adjust here if necessary.
-        const institutionalGatewayUrl = "https://payment.cmcvellore.ac.in/checkout";
-        
-        // Pass the registration ID so the gateway can reference it when pinging your webhook
-        const redirectUrl = `${institutionalGatewayUrl}?ref=${encodeURIComponent(registrationId)}&amount=${amount}`;
-
-        // Redirect the user to the portal
-        window.location.href = redirectUrl;
+        // The payment gateway does not provide an API to receive details back.
+        // Redirect the user directly to the payment link.
+        window.location.href = "https://bit.ly/4cZQp8A";
     };
 
     return (
@@ -171,8 +165,8 @@ function PaymentPageContent() {
                                         {/* Gloss effect for the button */}
                                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
                                     </button>
-                                    <p className="text-center text-xs text-slate-400 mt-4 flex items-center justify-center gap-1">
-                                        Secured by Razorpay • PCI-DSS Certified
+                                    <p className="text-center text-xs text-slate-500 mt-4 px-4">
+                                        Note: After completing your payment on the portal, administrators will manually verify and confirm your participation. You will receive a confirmation email once verified.
                                     </p>
                                 </div>
                             </motion.form>

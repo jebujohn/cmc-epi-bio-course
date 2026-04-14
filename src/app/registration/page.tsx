@@ -8,6 +8,12 @@ export default function RegistrationPage() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        phone: "",
+        emergencyContactName: "",
+        emergencyContactPhone: "",
+        age: "",
+        gender: "",
+        statPackagePreference: "",
         institution: "",
         qualification: "",
         experience: "",
@@ -56,6 +62,7 @@ export default function RegistrationPage() {
                         Course fee: <span className="font-bold text-slate-900">INR 8850</span> (inclusive of GST). 
                         Limited to <span className="font-bold text-slate-900">40 registrations</span>.
                         <br /> <span className="text-sm text-slate-500 font-medium whitespace-nowrap">(Accommodation charges extra)</span>
+                        <br /> <span className="font-semibold text-primary">Note: Participants must bring a computer for hands-on workshops.</span>
                         <br /> Application deadline: <span className="font-bold text-slate-900">May 25, 2026</span>
                     </p>
                 </div>
@@ -120,6 +127,110 @@ export default function RegistrationPage() {
                                             className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
                                             placeholder="john.doe@hospital.org"
                                         />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label htmlFor="phone" className="text-sm font-semibold text-slate-700">Phone Number *</label>
+                                        <input
+                                            type="tel"
+                                            id="phone"
+                                            name="phone"
+                                            required
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
+                                            placeholder="+91 98765 43210"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label htmlFor="age" className="text-sm font-semibold text-slate-700">Age (in years)</label>
+                                        <input
+                                            type="number"
+                                            id="age"
+                                            name="age"
+                                            min="18"
+                                            max="100"
+                                            value={formData.age}
+                                            onChange={handleChange}
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
+                                            placeholder="30"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label htmlFor="gender" className="text-sm font-semibold text-slate-700">Gender *</label>
+                                        <select
+                                            id="gender"
+                                            name="gender"
+                                            required
+                                            value={formData.gender}
+                                            onChange={handleChange}
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
+                                        >
+                                            <option value="" disabled>Select gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Prefer not to say">Prefer not to say</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="space-y-2 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 border border-slate-100 rounded-xl p-4">
+                                        <div className="space-y-2">
+                                            <label htmlFor="emergencyContactName" className="text-sm font-semibold text-slate-700">Emergency Contact Name</label>
+                                            <input
+                                                type="text"
+                                                id="emergencyContactName"
+                                                name="emergencyContactName"
+                                                value={formData.emergencyContactName}
+                                                onChange={handleChange}
+                                                className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
+                                                placeholder="Jane Doe"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label htmlFor="emergencyContactPhone" className="text-sm font-semibold text-slate-700">Emergency Contact Phone</label>
+                                            <input
+                                                type="tel"
+                                                id="emergencyContactPhone"
+                                                name="emergencyContactPhone"
+                                                value={formData.emergencyContactPhone}
+                                                onChange={handleChange}
+                                                className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900"
+                                                placeholder="+91 98765 43210"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2 md:col-span-2">
+                                        <label htmlFor="statPackagePreference" className="text-sm font-semibold text-slate-700">Preference of Statistical Package for Training *</label>
+                                        <div className="flex gap-4">
+                                            <label className="flex items-center gap-2 cursor-pointer">
+                                                <input 
+                                                    type="radio" 
+                                                    name="statPackagePreference" 
+                                                    value="SPSS" 
+                                                    checked={formData.statPackagePreference === 'SPSS'}
+                                                    onChange={handleChange}
+                                                    required
+                                                    className="w-4 h-4 text-primary focus:ring-primary"
+                                                />
+                                                <span className="text-slate-700 font-medium">SPSS</span>
+                                            </label>
+                                            <label className="flex items-center gap-2 cursor-pointer">
+                                                <input 
+                                                    type="radio" 
+                                                    name="statPackagePreference" 
+                                                    value="R" 
+                                                    checked={formData.statPackagePreference === 'R'}
+                                                    onChange={handleChange}
+                                                    required
+                                                    className="w-4 h-4 text-primary focus:ring-primary"
+                                                />
+                                                <span className="text-slate-700 font-medium">R</span>
+                                            </label>
+                                        </div>
                                     </div>
 
                                     <div className="space-y-2 md:col-span-2">

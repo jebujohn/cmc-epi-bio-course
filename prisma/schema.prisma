@@ -8,16 +8,22 @@ generator client {
 }
 
 model Registration {
-  id            String   @id @default(cuid())
-  authCode      String?  @unique
-  name          String
-  email         String   @unique
-  institution   String
-  qualification String
-  experience    String
-  interest      String
-  status        String   @default("PENDING")
-  createdAt     DateTime @default(now())
+  id                    String   @id @default(cuid())
+  authCode              String?  @unique
+  name                  String
+  email                 String   @unique
+  phone                 String?
+  emergencyContactName  String?
+  emergencyContactPhone String?
+  age                   Int?
+  gender                String?
+  statPackagePreference String?
+  institution           String
+  qualification         String
+  experience            String
+  interest              String
+  status                String   @default("PENDING")
+  createdAt             DateTime @default(now())
 }
 
 model Feedback {

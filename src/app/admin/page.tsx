@@ -262,7 +262,14 @@ export default function AdminPortal() {
                                                 </div>
                                             </div>
 
-                                            <div className="flex gap-2 w-full md:w-auto">
+                                            <div className="flex gap-2 w-full md:w-auto flex-wrap justify-end">
+                                                <button
+                                                    onClick={() => updateStatus(selectedRegistration.id, "PAID")}
+                                                    disabled={selectedRegistration.status === "PAID"}
+                                                    className="flex-1 md:flex-none px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                                                >
+                                                    <CheckCircle size={18} /> Mark Paid
+                                                </button>
                                                 <button
                                                     onClick={() => updateStatus(selectedRegistration.id, "APPROVED")}
                                                     disabled={selectedRegistration.status === "APPROVED"}
