@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { participantId, day, overall, pace, content, faculty, comments } = body;
+        const { participantId, day, sessionFeedbacks, comments } = body;
 
         if (!participantId) {
             return NextResponse.json({ error: "Participant Passcode is required for authentication." }, { status: 401 });
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Authentication failed. Invalid 6-letter passcode." }, { status: 403 });
         }
 
-        if (!day || !overall || !pace || !content || !faculty) {
+        if (!day || !sessionFeedbacks || Object.keys(sessionFeedbacks).length === 0) {
             return NextResponse.json({ error: "Missing required rating fields" }, { status: 400 });
         }
 
@@ -31,10 +31,7 @@ export async function POST(req: Request) {
             data: {
                 participantId: registration.id, // Securely link to their unique database ID
                 day,
-                overall,
-                pace,
-                content,
-                faculty,
+                sessionFeedbacks,
                 comments: comments || null
             }
         });

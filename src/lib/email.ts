@@ -202,3 +202,40 @@ export async function sendPaymentReceiptEmail(params: {
         html: wrapHtml("Payment Confirmed", body),
     });
 }
+
+// ─── 4. Feedback Reminder ─────────────────────────────────────────────────
+export async function sendFeedbackReminderEmail(params: {
+    toEmail: string;
+    name: string;
+    authCode: string;
+}) {
+    const { toEmail, name, authCode } = params;
+
+    const body = `
+<h2 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#1e293b;">Daily Course Feedback Request</h2>
+<p style="margin:0 0 24px;font-size:15px;color:#64748b;">Dear <strong>${name}</strong>, thank you for attending today's sessions of the ${COURSE_NAME}.</p>
+
+<p style="margin:0 0 24px;font-size:15px;color:#475569;">To help us improve and ensure we are meeting your expectations, please take a few minutes to provide feedback for today's sessions.</p>
+
+<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:20px 24px;margin-bottom:28px;text-align:center;">
+  <p style="margin:0 0 8px;font-size:13px;font-weight:700;color:#b45309;text-transform:uppercase;">Your Participant Passcode</p>
+  <p style="margin:0 0 8px;font-size:28px;font-weight:800;color:#92400e;letter-spacing:0.15em;font-family:monospace;">${authCode}</p>
+  <p style="margin:0;font-size:13px;color:#b45309;">You will need this code to authenticate your feedback submission.</p>
+</div>
+
+<div style="text-align:center;margin-bottom:24px;">
+  <a href="${process.env.NEXT_PUBLIC_BASE_URL ?? "https://cmc-epi-bio-course.vercel.app"}/feedback"
+     style="display:inline-block;background:linear-gradient(135deg,#1e3a5f,#2a5298);color:#fff;text-decoration:none;font-size:15px;font-weight:700;padding:14px 36px;border-radius:10px;letter-spacing:0.02em;">
+    Submit Today's Feedback →
+  </a>
+</div>
+
+<p style="margin:0;font-size:14px;color:#94a3b8;">Your responses are confidential and greatly appreciated.</p>`;
+
+    await sgMail.send({
+        to: toEmail,
+        from: { email: FROM_EMAIL, name: "CMC Vellore – Epidemiology Course" },
+        subject: `Reminder: Daily Course Feedback | ${COURSE_NAME}`,
+        html: wrapHtml("Feedback Reminder", body),
+    });
+}

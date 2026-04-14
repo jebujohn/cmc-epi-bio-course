@@ -21,13 +21,10 @@ model Registration {
 }
 
 model Feedback {
-  id            String   @id @default(cuid())
-  participantId String?
-  day           String
-  overall       Int
-  pace          Int
-  content       Int
-  faculty       Int
-  comments      String?
-  createdAt     DateTime @default(now())
+  id               String   @id @default(cuid())
+  participantId    String?
+  day              String
+  sessionFeedbacks Json
+  comments         String?
+  createdAt        DateTime @default(now())
 }

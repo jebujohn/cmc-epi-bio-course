@@ -1,30 +1,56 @@
 "use client";
 
-import { useState } from "react";
-import { Send, CheckCircle2, MessageSquare, CalendarDays, Star } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Send, CheckCircle2, MessageSquare, CalendarDays, Star, UserIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { schedule } from "@/data/agenda";
+
+type SessionFeedback = {
+    content: string;
+    duration: string;
+    engagement: string;
+};
 
 export default function FeedbackPage() {
     const [formData, setFormData] = useState({
         day: "Day 1",
         participantId: "",
-        ratingOverall: "",
-        ratingPace: "",
-        ratingContent: "",
-        ratingFaculty: "",
         comments: ""
     });
+    
+    const [sessionFeedbacks, setSessionFeedbacks] = useState<Record<string, SessionFeedback>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const days = Array.from({ length: 14 }, (_, i) => `Day ${i + 1}`);
+    const days = schedule.map(s => `Day ${s.day}`);
+    
+    // Find the currently selected day's schedule
+    const currentDayNumber = parseInt(formData.day.replace('Day ', ''));
+    const currentDaySchedule = schedule.find(s => s.day === currentDayNumber);
+
+    // Initialize session feedbacks when day changes
+    useEffect(() => {
+        if (currentDaySchedule) {
+            const initialFeedbacks: Record<string, SessionFeedback> = {};
+            currentDaySchedule.sessions.forEach(session => {
+                initialFeedbacks[session.topic] = { content: "", duration: "", engagement: "" };
+            });
+            setSessionFeedbacks(initialFeedbacks);
+        }
+    }, [formData.day, currentDaySchedule]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleRating = (name: string, value: string) => {
-        setFormData({ ...formData, [name]: value });
+    const handleSessionFeedback = (topic: string, field: keyof SessionFeedback, value: string) => {
+        setSessionFeedbacks(prev => ({
+            ...prev,
+            [topic]: {
+                ...prev[topic],
+                [field]: value
+            }
+        }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -37,10 +63,7 @@ export default function FeedbackPage() {
                 body: JSON.stringify({
                     participantId: formData.participantId,
                     day: formData.day,
-                    overall: parseInt(formData.ratingOverall),
-                    pace: parseInt(formData.ratingPace),
-                    content: parseInt(formData.ratingContent),
-                    faculty: parseInt(formData.ratingFaculty),
+                    sessionFeedbacks,
                     comments: formData.comments,
                 })
             });
@@ -59,27 +82,36 @@ export default function FeedbackPage() {
         }
     };
 
-    const RatingRow = ({ label, name }: { label: string, name: string }) => (
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-slate-100 last:border-0 hover:bg-slate-50 rounded-lg px-2 transition-colors">
-            <label className="text-sm font-semibold text-slate-700 mb-2 sm:mb-0 w-1/3">{label}</label>
-            <div className="flex gap-2 sm:gap-4 w-2/3 justify-end sm:justify-start">
-                {[1, 2, 3, 4, 5].map((val) => (
+    // Form validity check
+    const isFormValid = () => {
+        if (!formData.participantId) return false;
+        if (!currentDaySchedule) return false;
+        
+        for (const session of currentDaySchedule.sessions) {
+            const fb = sessionFeedbacks[session.topic];
+            if (!fb || !fb.content || !fb.duration || !fb.engagement) return false;
+        }
+        return true;
+    };
+
+    const RadioGroup = ({ topic, field, options, label }: { topic: string, field: keyof SessionFeedback, options: string[], label: string }) => (
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between py-2 mt-2">
+            <span className="text-sm font-medium text-slate-700 w-1/3 mb-2 sm:mb-0">{label}</span>
+            <div className="flex flex-wrap gap-2 w-2/3 justify-start sm:justify-end">
+                {options.map((opt) => (
                     <button
-                        key={val}
+                        key={opt}
                         type="button"
-                        onClick={() => handleRating(name, val.toString())}
-                        className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 ${(formData as any)[name] === val.toString()
-                            ? 'bg-primary text-white scale-110 shadow-md ring-2 ring-primary/30'
-                            : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-                            }`}
+                        onClick={() => handleSessionFeedback(topic, field, opt)}
+                        className={`px-4 py-2 rounded-full text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 ${
+                            sessionFeedbacks[topic]?.[field] === opt
+                                ? 'bg-primary text-white shadow-md ring-2 ring-primary/30 scale-105'
+                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        }`}
                     >
-                        {val}
+                        {opt}
                     </button>
                 ))}
-            </div>
-            <div className="hidden sm:flex w-full mt-2 sm:mt-0 sm:w-1/4 justify-between text-xs text-slate-400 font-medium px-2">
-                <span>Poor</span>
-                <span>Excellent</span>
             </div>
         </div>
     );
@@ -94,7 +126,7 @@ export default function FeedbackPage() {
                         Daily Feedback
                     </h1>
                     <p className="text-slate-600 max-w-xl mx-auto text-lg leading-relaxed">
-                        Your daily feedback helps us continuously improve the course. To prevent spam, you must authenticate using your unique 6-letter Participant Passcode (found in your registration email).
+                        Your daily feedback helps us continuously improve the course. To prevent spam, you must authenticate using your unique 6-letter Participant Passcode.
                     </p>
                 </div>
 
@@ -117,7 +149,8 @@ export default function FeedbackPage() {
                                 <button
                                     onClick={() => {
                                         setIsSuccess(false);
-                                        setFormData({ ...formData, ratingOverall: "", ratingPace: "", ratingContent: "", ratingFaculty: "", comments: "" });
+                                        setFormData({ ...formData, comments: "" });
+                                        // Sessions will automatically reset due to useEffect mapping based on day
                                     }}
                                     className="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-xl font-bold shadow-md hover:shadow-lg transition-all"
                                 >
@@ -166,21 +199,60 @@ export default function FeedbackPage() {
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-4 border-b border-slate-200 pb-2">
-                                        <Star size={20} className="text-yellow-500" />
-                                        Session Ratings (1 = Poor, 5 = Excellent)
-                                    </h3>
+                                <div className="space-y-6">
+                                    <div className="border-b border-slate-200 pb-2">
+                                        <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-1">
+                                            <Star size={20} className="text-yellow-500" />
+                                            Session Ratings
+                                        </h3>
+                                        <p className="text-sm text-slate-500">Please provide feedback for each session today.</p>
+                                    </div>
 
-                                    <RatingRow label="Overall Session Quality" name="ratingOverall" />
-                                    <RatingRow label="Pace of Delivery" name="ratingPace" />
-                                    <RatingRow label="Clarity of Content/Handouts" name="ratingContent" />
-                                    <RatingRow label="Effectiveness of Faculty" name="ratingFaculty" />
+                                    {currentDaySchedule?.sessions.map((session, idx) => (
+                                        <motion.div 
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: idx * 0.1 }}
+                                            key={idx} 
+                                            className="bg-slate-50 rounded-xl p-5 border border-slate-100 shadow-sm"
+                                        >
+                                            <div className="mb-4 pb-3 border-b border-slate-200">
+                                                <h4 className="text-md font-bold text-slate-900 leading-tight mb-2">
+                                                    {session.topic}
+                                                </h4>
+                                                <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
+                                                    <UserIcon size={14} className="text-primary/70" />
+                                                    {session.faculty}
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-1">
+                                                <RadioGroup 
+                                                    topic={session.topic} 
+                                                    field="content" 
+                                                    label="Content" 
+                                                    options={["Too little", "Just right", "Too much"]} 
+                                                />
+                                                <RadioGroup 
+                                                    topic={session.topic} 
+                                                    field="engagement" 
+                                                    label="Engagement" 
+                                                    options={["Poor", "Good", "Great"]} 
+                                                />
+                                                <RadioGroup 
+                                                    topic={session.topic} 
+                                                    field="duration" 
+                                                    label="Duration" 
+                                                    options={["Too short", "Just right", "Too long"]} 
+                                                />
+                                            </div>
+                                        </motion.div>
+                                    ))}
                                 </div>
 
                                 <div className="space-y-2 pt-4">
                                     <label htmlFor="comments" className="text-sm font-semibold text-slate-700 text-lg">Open-ended Feedback</label>
-                                    <p className="text-xs text-slate-500 mb-2">What did you like most? What could be improved?</p>
+                                    <p className="text-xs text-slate-500 mb-2">What did you like most? What could be improved overall today?</p>
                                     <textarea
                                         id="comments"
                                         name="comments"
@@ -188,14 +260,14 @@ export default function FeedbackPage() {
                                         value={formData.comments}
                                         onChange={handleChange}
                                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-slate-900 resize-y"
-                                        placeholder="The hands-on R session was excellent, but we needed more time for the exercises..."
+                                        placeholder="Additional comments or suggestions..."
                                     />
                                 </div>
 
                                 <div className="pt-6 border-t border-slate-100 flex justify-end">
                                     <button
                                         type="submit"
-                                        disabled={isSubmitting || !formData.participantId || !formData.ratingOverall || !formData.ratingContent || !formData.ratingFaculty || !formData.ratingPace}
+                                        disabled={isSubmitting || !isFormValid()}
                                         className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 w-full sm:w-auto justify-center"
                                     >
                                         {isSubmitting ? 'Saving...' : 'Submit Feedback'}
