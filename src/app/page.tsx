@@ -175,20 +175,35 @@ export default function Home() {
                   <Users className="text-secondary" />
                   Participant Accommodation
                 </h3>
-                <p className="text-slate-600 leading-relaxed mb-4">
-                  Shared accommodation is available at the CHTC Guest House for the duration of the course to facilitate networking among participants.
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  Shared accommodation is available at the CHTC Guest House for the duration of the course. <strong className="text-slate-900">Please note there are no single occupancy or non-AC rooms available.</strong>
                 </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
-                    <p className="text-sm text-slate-500 font-medium mb-1">Non-AC Room</p>
-                    <p className="font-bold text-slate-900">₹550 <span className="text-sm font-normal text-slate-500">/ night</span></p>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center col-span-2 sm:col-span-1">
+                    <p className="text-sm text-slate-500 font-medium mb-1">AC Double Occupancy</p>
+                    <p className="font-bold text-slate-900">₹1300 <span className="text-sm font-normal text-slate-500">/ 24 hrs**</span></p>
                   </div>
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
-                    <p className="text-sm text-slate-500 font-medium mb-1">AC Room</p>
-                    <p className="font-bold text-slate-900">₹650 <span className="text-sm font-normal text-slate-500">/ night</span></p>
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center col-span-2 sm:col-span-1">
+                    <p className="text-sm text-slate-500 font-medium mb-1">Third Occupancy</p>
+                    <p className="font-bold text-slate-900">₹200 <span className="text-sm font-normal text-slate-500">/ 24 hrs</span></p>
                   </div>
                 </div>
-                <p className="text-xs text-slate-400 mt-4 text-center">* Food is available at the mess for an additional cost.</p>
+                
+                <div className="text-sm text-slate-600 space-y-2 mb-4 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                  <p className="font-medium text-slate-700 pb-2 border-b border-slate-200">Guidelines & Policies</p>
+                  <ul className="list-disc pl-5 space-y-1 mt-2">
+                    <li>24/7 Front Desk.</li>
+                    <li>Pets are not allowed.</li>
+                    <li>Please note that there is no partial rent.</li>
+                    <li>No more than 3 people are allowed in a room.</li>
+                    <li>Extension of room booking will not be automatic.</li>
+                    <li>Food available at CHTC Mess on payment basis.</li>
+                    <li>Foreigners must fill the &quot;Form-C&quot; within 24 hours of arrival.</li>
+                    <li>Payment can be made at check-out by Cash / Card / QR Scan.</li>
+                    <li>Cancellation/Non-occupancy charges apply if booked and unused.</li>
+                  </ul>
+                </div>
+                <p className="text-xs text-slate-500 italic">** The time when the guest checks-in becomes the check-out time.</p>
               </div>
             </div>
 
