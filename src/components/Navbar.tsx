@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, BookOpen, GraduationCap } from "lucide-react";
+import Image from "next/image";
+import { Menu, X, GraduationCap } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,9 +20,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="bg-primary text-white p-2 rounded-lg">
-                <BookOpen size={24} />
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="flex items-center justify-center overflow-hidden h-12 w-12 rounded-full border border-gray-100 bg-white shadow-sm flex-shrink-0">
+                <Image src="/cmc-logo.png" alt="CMC Logo" width={48} height={48} className="object-contain p-0.5" />
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-lg text-primary leading-tight">

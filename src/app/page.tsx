@@ -126,7 +126,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Hands-On Sessions</h3>
               <p className="text-slate-600 leading-relaxed">
-                Move beyond theory. Our curriculum heavily emphasizes software sessions including <strong>R, SPSS, Epi Info, and Zotero</strong>.
+                Move beyond theory. Our curriculum heavily emphasizes software sessions including <strong>R, SPSS, and Epi Info</strong>.
               </p>
             </div>
 
@@ -136,7 +136,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Expert Faculty</h3>
               <p className="text-slate-600 leading-relaxed">
-                Learn directly from renowned professors and practicing epidemiologists from CMC.
+                Learn directly from renowned professors and practicing epidemiologists and biostatisticians at CMC.
               </p>
             </div>
 

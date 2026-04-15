@@ -51,7 +51,7 @@ const facultyData = [
         designation: "Assistant Professor",
         affiliation: "Dept. of Community Health, CMC Vellore",
         expertise: ["Practical Software Sessions", "Data Management"],
-        bio: "Leads the intensive hands-on sessions utilising SPSS, Epi Info, and Zotero ensuring practical technological capability.",
+        bio: "Leads the intensive hands-on sessions utilising SPSS and Epi Info ensuring practical technological capability.",
         image: "/faculty/jackwin.jpg",
         imagePosition: "center 20%",
         fit: "cover",
