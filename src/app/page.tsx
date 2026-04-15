@@ -25,7 +25,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-50 border-b border-slate-200">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.15]"
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
           style={{ backgroundImage: "url('/hero-bg.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50 z-0" />
