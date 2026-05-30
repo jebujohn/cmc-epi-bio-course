@@ -48,13 +48,13 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-            <Link
-              href="/registration"
-              className="bg-primary hover:bg-primary-light text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all transform hover:scale-105 shadow-md flex items-center gap-2"
+            <span
+              aria-disabled="true"
+              className="bg-slate-300 text-slate-600 px-5 py-2.5 rounded-full text-sm font-semibold shadow-inner cursor-not-allowed flex items-center gap-2"
             >
               <GraduationCap size={18} />
-              Register Now
-            </Link>
+              Registrations Closed
+            </span>
           </div>
 
           {/* Mobile Menu Button */}
@@ -83,13 +83,12 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <Link
-              href="/registration"
-              onClick={() => setIsOpen(false)}
-              className="mt-4 w-full text-center bg-primary hover:bg-primary-light text-white px-5 py-3 rounded-md text-base font-medium transition-colors shadow-sm"
+            <span
+              aria-disabled="true"
+              className="mt-4 w-full text-center bg-slate-300 text-slate-600 px-5 py-3 rounded-md text-base font-medium shadow-sm cursor-not-allowed"
             >
-              Register Now
-            </Link>
+              Registrations Closed
+            </span>
           </div>
         </div>
       )}
