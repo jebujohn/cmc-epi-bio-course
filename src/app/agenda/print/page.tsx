@@ -23,6 +23,10 @@ export default function PrintAgendaPage() {
 
                 body { background: #f8fafc; }
 
+                /* Hide the site chrome on this page */
+                nav, footer { display: none !important; }
+                main { padding-top: 0 !important; }
+
                 .page-wrapper {
                     max-width: 900px;
                     margin: 0 auto;
