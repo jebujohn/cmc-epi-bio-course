@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Download, Clock, UserIcon, CheckCircle2 } from "lucide-react";
 import { schedule } from "@/data/agenda";
@@ -23,10 +24,14 @@ export default function AgendaPage() {
                         </h1>
                         <p className="text-slate-600">A rigorous two-week schedule covering foundational to advanced topics.</p>
                     </div>
-                    <button className="flex items-center gap-2 bg-white border border-slate-200 text-slate-700 hover:text-primary hover:border-primary/30 hover:bg-slate-100 px-5 py-2.5 rounded-lg shadow-sm transition-all font-medium">
+                    <Link
+                        href="/agenda/print"
+                        target="_blank"
+                        className="flex items-center gap-2 bg-white border border-slate-200 text-slate-700 hover:text-primary hover:border-primary/30 hover:bg-slate-100 px-5 py-2.5 rounded-lg shadow-sm transition-all font-medium"
+                    >
                         <Download size={20} />
                         Download PDF
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="space-y-4">
