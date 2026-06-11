@@ -203,7 +203,43 @@ export async function sendPaymentReceiptEmail(params: {
     });
 }
 
-// ─── 4. Feedback Reminder ─────────────────────────────────────────────────
+// ─── 4. Magic Link (Participant Portal) ──────────────────────────────────
+export async function sendMagicLinkEmail(params: {
+    toEmail: string;
+    name: string;
+    authCode: string;
+}) {
+    const { toEmail, name, authCode } = params;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://cmc-epi-bio-course.vercel.app";
+    const loginUrl = `${baseUrl}/portal/auth?code=${encodeURIComponent(authCode)}`;
+
+    const body = `
+<h2 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#1e293b;">Your Participant Portal Link</h2>
+<p style="margin:0 0 24px;font-size:15px;color:#64748b;">Hello <strong>${name}</strong>, here is your secure login link for the participant portal.</p>
+
+<div style="text-align:center;margin-bottom:28px;">
+  <a href="${loginUrl}"
+     style="display:inline-block;background:linear-gradient(135deg,#1e3a5f,#2a5298);color:#fff;text-decoration:none;font-size:15px;font-weight:700;padding:16px 40px;border-radius:10px;letter-spacing:0.02em;">
+    Access Participant Portal →
+  </a>
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #2a5298;border-radius:8px;padding:16px 20px;margin-bottom:24px;">
+  <p style="margin:0 0 6px;font-size:13px;font-weight:700;color:#2a5298;">Important</p>
+  <p style="margin:0;font-size:14px;color:#475569;">This link is personal — it logs in as you. Do not share it. It remains valid for 30 days.</p>
+</div>
+
+<p style="margin:0;font-size:13px;color:#94a3b8;">If you did not request this link, you can safely ignore this email.</p>`;
+
+    await sgMail.send({
+        to: toEmail,
+        from: { email: FROM_EMAIL, name: "CMC Vellore – Epidemiology Course" },
+        subject: `Your Participant Portal Access | ${COURSE_NAME}`,
+        html: wrapHtml("Participant Portal Access", body),
+    });
+}
+
+// ─── 5. Feedback Reminder ─────────────────────────────────────────────────
 export async function sendFeedbackReminderEmail(params: {
     toEmail: string;
     name: string;

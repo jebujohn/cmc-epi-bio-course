@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, GraduationCap } from "lucide-react";
+import { Menu, X, BookOpen } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +13,7 @@ export default function Navbar() {
     { name: "Agenda", href: "/agenda" },
     { name: "Faculty", href: "/faculty" },
     { name: "Feedback", href: "/feedback" },
+    { name: "Participant Portal", href: "/portal" },
   ];
 
   return (
@@ -48,13 +49,13 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-            <span
-              aria-disabled="true"
-              className="bg-slate-300 text-slate-600 px-5 py-2.5 rounded-full text-sm font-semibold shadow-inner cursor-not-allowed flex items-center gap-2"
+            <Link
+              href="/portal"
+              className="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow transition-colors flex items-center gap-2"
             >
-              <GraduationCap size={18} />
-              Registrations Closed
-            </span>
+              <BookOpen size={18} />
+              Participant Portal
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -83,12 +84,13 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <span
-              aria-disabled="true"
-              className="mt-4 w-full text-center bg-slate-300 text-slate-600 px-5 py-3 rounded-md text-base font-medium shadow-sm cursor-not-allowed"
+            <Link
+              href="/portal"
+              onClick={() => setIsOpen(false)}
+              className="mt-4 w-full text-center bg-primary hover:bg-primary-dark text-white px-5 py-3 rounded-md text-base font-medium shadow transition-colors"
             >
-              Registrations Closed
-            </span>
+              Participant Portal
+            </Link>
           </div>
         </div>
       )}
