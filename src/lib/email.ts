@@ -106,7 +106,7 @@ export async function sendStatusUpdateEmail(params: {
     status: "APPROVED" | "REJECTED";
     registrationId: string;
 }) {
-    const { toEmail, name, status, registrationId } = params;
+    const { toEmail, name, status } = params;
     const isApproved = status === "APPROVED";
 
     const statusColor = isApproved ? "#16a34a" : "#dc2626";
@@ -116,17 +116,8 @@ export async function sendStatusUpdateEmail(params: {
 
     const approvedExtras = isApproved
         ? `
-<div style="background:#fefce8;border:1px solid #fde047;border-radius:10px;padding:20px 24px;margin-bottom:24px;">
-  <p style="margin:0 0 8px;font-size:14px;font-weight:700;color:#92400e;">⚠️ Action Required – Complete Payment</p>
-  <p style="margin:0 0 12px;font-size:14px;color:#78350f;">Your seat is <strong>not confirmed</strong> until the course fee is paid. Please complete the payment as soon as possible to secure your place.</p>
-  <p style="margin:0 0 4px;font-size:13px;color:#92400e;">Course Fee: <strong>${COURSE_FEE}</strong> (inclusive of GST)</p>
-  <p style="margin:0;font-size:13px;color:#92400e;">Registration ID: <code style="background:#fde68a;padding:2px 6px;border-radius:4px;">${registrationId}</code></p>
-</div>
-<div style="text-align:center;margin-bottom:24px;">
-  <a href="${process.env.NEXT_PUBLIC_BASE_URL ?? "https://cmc-epi-bio-course.vercel.app"}/payment?identifier=${encodeURIComponent(toEmail)}"
-     style="display:inline-block;background:linear-gradient(135deg,#1e3a5f,#2a5298);color:#fff;text-decoration:none;font-size:15px;font-weight:700;padding:14px 36px;border-radius:10px;letter-spacing:0.02em;">
-    Pay ${COURSE_FEE} &amp; Confirm Seat →
-  </a>
+<div style="background:#f0fdf4;border-left:4px solid #16a34a;border-radius:8px;padding:16px 20px;margin-bottom:24px;">
+  <p style="margin:0;font-size:14px;color:#166534;">Further details about the course schedule, venue, and accommodation will be shared closer to the start date.</p>
 </div>`
         : "";
 
@@ -150,7 +141,7 @@ ${approvedExtras}
         to: toEmail,
         from: { email: FROM_EMAIL, name: "CMC Vellore – Epidemiology Course" },
         subject: isApproved
-            ? `🎉 Application Approved – Action Required | ${COURSE_NAME}`
+            ? `Application Approved | ${COURSE_NAME}`
             : `Application Update – ${COURSE_NAME}`,
         html: wrapHtml(`Application ${status}`, body),
     });
