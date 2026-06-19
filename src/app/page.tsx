@@ -40,11 +40,12 @@ export default function Home() {
             variants={staggerContainer}
             className="max-w-4xl mx-auto text-center"
           >
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 font-medium text-sm mb-6 border border-red-200 shadow-sm">
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 font-medium text-sm mb-6 border border-green-200 shadow-sm">
               <span className="relative flex h-2 w-2">
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              Registrations for 2026 cohort are now closed
+              Applications open — limited seats remaining
             </motion.div>
 
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
@@ -62,9 +63,9 @@ export default function Home() {
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-              <span aria-disabled="true" className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-300 text-slate-600 font-semibold flex items-center justify-center gap-2 cursor-not-allowed shadow-inner">
-                Registrations Closed
-              </span>
+              <Link href="/registration" className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-white font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-md hover:shadow-lg">
+                Apply Now
+              </Link>
               <Link href="/agenda" className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-slate-700 font-semibold flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all shadow-sm group">
                 View Agenda
                 <NotebookText size={20} className="text-slate-400 group-hover:text-primary transition-colors" />
