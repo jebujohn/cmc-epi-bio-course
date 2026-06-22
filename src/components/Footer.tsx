@@ -30,9 +30,6 @@ export default function Footer() {
                                 <Link href="/faculty" className="hover:text-white transition-colors">Expert Faculty</Link>
                             </li>
                             <li>
-                                <Link href="/registration" className="hover:text-white transition-colors">Registration</Link>
-                            </li>
-                            <li>
                                 <Link href="/feedback" className="hover:text-white transition-colors">Daily Feedback</Link>
                             </li>
                         </ul>
