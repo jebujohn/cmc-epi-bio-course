@@ -102,7 +102,7 @@ export const schedule = [
         sessions: [
             { time: "8:30 am", topic: "Cohort Studies", faculty: "Anu Oommen" },
             { time: "10:15 am", topic: "☕ Coffee Break", faculty: "" },
-            { time: "10:30 am", topic: "Cohort Studies – Survival Analysis", faculty: "Anu Oommen" },
+            { time: "10:30 am", topic: "Cohort Studies – Survival Analysis", faculty: "Divya Muliyil" },
             { time: "12:30 pm", topic: "🍽 Lunch Break", faculty: "" },
             { time: "1:30 pm", topic: "Group Activity – Study Design", faculty: "Jackwin Sam Paul / Shalini" },
             { time: "3:30 pm", topic: "🍵 Tea Break", faculty: "" },
