@@ -32,13 +32,13 @@ export const schedule = [
     {
         day: 3,
         date: "Wednesday, July 8",
-        title: "Diagnostic Tests & Screening",
+        title: "Screening & Diagnostic Tests",
         sessions: [
-            { time: "8:30 am", topic: "Diagnostic Tests", faculty: "Vinod Abraham" },
+            { time: "8:30 am", topic: "Screening in Health", faculty: "Venkataraghava Mohan" },
             { time: "10:15 am", topic: "☕ Coffee Break", faculty: "" },
-            { time: "10:30 am", topic: "Diagnostic Tests (Exercises)", faculty: "Vinod Abraham" },
+            { time: "10:30 am", topic: "Diagnostic Tests", faculty: "Vinod Abraham" },
             { time: "12:30 pm", topic: "🍽 Lunch Break", faculty: "" },
-            { time: "1:30 pm", topic: "Screening in Health", faculty: "Venkataraghava Mohan" },
+            { time: "1:30 pm", topic: "Diagnostic Tests (Exercises)", faculty: "Vinod Abraham" },
             { time: "3:30 pm", topic: "🍵 Tea Break", faculty: "" },
             { time: "3:45 pm", topic: "Electronic Data Capture (Open Source)", faculty: "Manoj" },
         ]
@@ -60,11 +60,11 @@ export const schedule = [
     {
         day: 5,
         date: "Friday, July 10",
-        title: "Tests of Significance & Research Ethics",
+        title: "Tests of Significance, Correlation & Research Ethics",
         sessions: [
             { time: "8:30 am", topic: "Tests of Significance", faculty: "Prasanna Samuel" },
             { time: "10:15 am", topic: "☕ Coffee Break", faculty: "" },
-            { time: "10:30 am", topic: "Tests of Significance – Exercises", faculty: "Jackwin Sam Paul" },
+            { time: "10:30 am", topic: "Correlation & Regression", faculty: "Jacob John" },
             { time: "12:30 pm", topic: "🍽 Lunch Break", faculty: "" },
             { time: "1:30 pm", topic: "Ethics in Research", faculty: "Anuradha Rose" },
             { time: "3:30 pm", topic: "🍵 Tea Break", faculty: "" },
@@ -74,9 +74,9 @@ export const schedule = [
     {
         day: 6,
         date: "Saturday, July 11",
-        title: "Correlation, Regression & Journal Review",
+        title: "Tests of Significance – Exercises & Journal Review",
         sessions: [
-            { time: "8:30 am", topic: "Correlation & Regression", faculty: "Jacob John" },
+            { time: "8:30 am", topic: "Tests of Significance – Exercises", faculty: "Jackwin Sam Paul" },
             { time: "10:30 am", topic: "☕ Coffee Break", faculty: "" },
             { time: "11:00 am", topic: "Review of Journal Article", faculty: "Shalini" },
         ]
