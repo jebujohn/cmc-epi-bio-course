@@ -54,7 +54,7 @@ export const schedule = [
             { time: "12:30 pm", topic: "🍽 Lunch Break", faculty: "" },
             { time: "1:30 pm", topic: "SPSS", faculty: "Divya Muliyil" },
             { time: "3:30 pm", topic: "🍵 Tea Break", faculty: "" },
-            { time: "3:45 pm", topic: "SPSS (contd.)", faculty: "Divya Muliyil" },
+            { time: "3:45 pm", topic: "SPSS (contd.)", faculty: "Vibisha" },
         ]
     },
     {
@@ -68,7 +68,7 @@ export const schedule = [
             { time: "12:30 pm", topic: "🍽 Lunch Break", faculty: "" },
             { time: "1:30 pm", topic: "Ethics in Research", faculty: "Anuradha Rose" },
             { time: "3:30 pm", topic: "🍵 Tea Break", faculty: "" },
-            { time: "3:45 pm", topic: "SPSS", faculty: "Divya Muliyil" },
+            { time: "3:45 pm", topic: "SPSS", faculty: "Cheryl" },
         ]
     },
     {
@@ -92,7 +92,7 @@ export const schedule = [
             { time: "12:30 pm", topic: "🍽 Lunch Break", faculty: "" },
             { time: "1:30 pm", topic: "Introduction to Group Activity", faculty: "Jackwin Sam Paul / Shalini" },
             { time: "3:30 pm", topic: "🍵 Tea Break", faculty: "" },
-            { time: "3:45 pm", topic: "SPSS", faculty: "Divya Muliyil" },
+            { time: "3:45 pm", topic: "SPSS", faculty: "Ashwin" },
         ]
     },
     {
